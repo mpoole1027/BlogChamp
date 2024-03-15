@@ -30,4 +30,4 @@ For now I just have the main `home.jsx` page displaying the events in our databa
 As always please do not be afraid to reach out and ask me questions about any of the code.
 
 ## Postman
-WIP I plan on adding some screenshots here showing how you can use postman to test requests. For now use [this tutorial] (https://youtu.be/Ll6knx7sFis?si=1B-_BodtzYYeGAHA&t=672)
+WIP I plan on adding some screenshots here showing how you can use postman to test requests. For now use [this tutorial](https://youtu.be/Ll6knx7sFis?si=1B-_BodtzYYeGAHA&t=672)
