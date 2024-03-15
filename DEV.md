@@ -25,9 +25,9 @@ We are using a react front end.
 The main code (for now) is simply located in the `src` folder.
 
 If I'm being real I think I can't really do a great job explaining how React works, I would highly reccomend taking some time to watch some react tutorials, such as [these](https://www.youtube.com/watch?v=j942wKiXFu8&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d)
-For now I just have the main `home.js` page displaying the events in our database.
+For now I just have the main `home.jsx` page displaying the events in our database.
 
 As always please do not be afraid to reach out and ask me questions about any of the code.
 
 ## Postman
-WIP I plan on adding some screenshots here showing how you can use postman to test requests.
+WIP I plan on adding some screenshots here showing how you can use postman to test requests. For now use [this tutorial] (https://youtu.be/Ll6knx7sFis?si=1B-_BodtzYYeGAHA&t=672)
