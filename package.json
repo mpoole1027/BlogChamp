@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "nodemon": "^3.1.0",
+    "npm-run-all": "^4.1.5",
+    "react-router-dom": "^6.22.3"
+  },
+  "scripts": {
+    "init-backend": "cd backend && npm run dev",
+    "init-frontend": "cd frontend && npm start",
+    "install-backend": "cd backend && npm install",
+    "install-frontend": "cd frontend && npm install",
+    "start": "npm-run-all -p init-backend init-frontend",
+    "install": "npm-run-all -p install-backend install-frontend"
+  }
+}
