@@ -6,7 +6,7 @@
   },
   "scripts": {
     "init-backend": "cd backend && npm run dev",
-    "init-frontend": "cd frontend && npm start",
+    "init-frontend": "cd frontend && npm run dev",
     "install-backend": "cd backend && npm install",
     "install-frontend": "cd frontend && npm install",
     "start": "npm-run-all -p init-backend init-frontend",

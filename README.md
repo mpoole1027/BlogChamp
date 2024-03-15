@@ -12,14 +12,14 @@ In the base folder, install the necessary packages
 
 Set up your .env file in the backend folder. From the base directory, go to the backend folder and create a file called `.env`. You need to define two variables (for now) in here:
 
-`PORT=####` where #### is the port number you want to have the server run on, ex. 4000
+`PORT=4000` the port number you want to have the server run on, by default 4000
 
 `MONGO_URI=...` where ... is the base uri to connect to the database, contact BlogChamp team for access
 
 So at the end your .env should look like
 
 ```
-PORT=####
+PORT=4000
 MONGO_URI=...
 ```
 

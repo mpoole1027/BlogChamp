@@ -3,9 +3,18 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const postRoutes = require('./routes/posts.js')
+const cors = require("cors")
+
+// set permissions for the front end
+const corsOptions = {
+  origin: "http://127.0.0.1:5173",
+}
 
 // creates express app
 const BlogChampApp = express()
+
+// let the front end access the server
+BlogChampApp.use(cors(corsOptions))
 
 // connects to routes
 BlogChampApp.use(express.json())
