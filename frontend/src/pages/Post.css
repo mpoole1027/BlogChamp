@@ -1,27 +1,43 @@
-/* Post.css */
-
-/* Main content area */
-.main-content {
-  margin-left: 25%; /* Set left margin to accommodate the sidebar */
-  width: 75%; /* Set width to 75% of the viewport */
-  height: 100vh; /* Set height to full viewport height */
-  background-color: #002454; /* Set background color */
-  overflow: hidden; /* Hide any overflowing content */
+.post {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items at the top */
+  padding: 20px;
 }
 
-/* Styles for post content */
-.post {
-  padding: 20px; /* Add padding to the post content */
-  overflow: hidden; /* Hide any overflowing content */
+.sidebar {
+  flex: 1; /* Take up 1/3 of the available space */
+  margin-right: 20px;
+}
+
+.main-content {
+  flex: 2; /* Take up 2/3 of the available space */
   color: #FAC01A; /* Set text color to yellow */
 }
 
-.post-title {
-  font-size: 24px; /* Example font size for post title */
-  margin-bottom: 10px; /* Add margin below post title */
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
-.post-content {
-  line-height: 1.6; /* Example line height for post content */
+.post-details {
+  background-color: #3366d5d8;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+
 }
 
+.post-details h2 {
+  margin-bottom: 10px;
+  color: #FAC01A; /* Set text color to yellow */
+}
+
+.post-details p {
+  color: #FAC01A; /* Set text color to yellow */
+}
+
+.post-details .author {
+  font-style: italic;
+}
