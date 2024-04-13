@@ -1,6 +1,7 @@
 // Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Login.css'; // Import the CSS file
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -29,16 +30,33 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handleLogin}>Login</button>
+    <div className = 'page'>
 
-      <h2>Sign Up</h2>
-      <input type="text" placeholder="Username" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
-      <input type="password" placeholder="Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
-      <button onClick={handleLogin}>Login</button>
+      <div className='title'>
+        <h1> BlogChamp</h1>
+      </div>
+
+      <div className = 'container'>
+
+        <div className='login'>
+
+          <h2>Login</h2>
+          <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <button onClick={handleLogin}>Login</button>
+
+        </div>
+
+        <div className='signup'>
+
+          <h2>Sign Up</h2>
+          <input type="text" placeholder="Username" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
+          <input type="password" placeholder="Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+          <button onClick={handleLogin}>Login</button>
+
+        </div>
+      </div>
+
     </div>
 
     
