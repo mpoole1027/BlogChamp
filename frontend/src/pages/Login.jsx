@@ -17,13 +17,27 @@ const Login = () => {
     }
   };
 
+  const handleSignUp = () => {
+    // Check if username and password are valid (you can replace this with your authentication logic)
+      // Redirect to the dashboard page after successful login
+      navigate('/Post');
+    
+  };
+
   return (
     <div>
       <h2>Login</h2>
       <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
       <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
       <button onClick={handleLogin}>Login</button>
+
+      <h2>Sign Up</h2>
+      <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <button onClick={handleLogin}>Login</button>
     </div>
+
+    
   );
 };
 
