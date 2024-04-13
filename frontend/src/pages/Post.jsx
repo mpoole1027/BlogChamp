@@ -17,9 +17,7 @@ const Post = () => {
         setPosts(json)
       }
     }
-
     fetchPosts()
-
   })
 
   return (
