@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import SearchBar from './components/SearchBar';
 import Sidebar from './components/Sidebar';
-import Login from './pages/Login'
-import Blog from './pages/Blog'
-import Post from './pages/Post'
-import Profile from './pages/Profile'
+import Login from './pages/Login';
+import Blog from './pages/Blog';
+import Post from './pages/Post';
+import Profile from './pages/Profile';
 
 
 function App() {
@@ -29,7 +29,6 @@ function App() {
             <Route path="/post" element={<Post />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
       </Router>
