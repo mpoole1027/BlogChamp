@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const postRoutes = require('./routes/posts.js')
+const userRoutes = require('./routes/users.js')
 const cors = require("cors")
 
 // set permissions for the front end
@@ -27,6 +28,8 @@ BlogChampApp.use((req, res, next) => {
 
 // add routes for managing post data
 BlogChampApp.use('/api/posts', postRoutes)
+
+BlogChampApp.use('/api/users', userRoutes)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
