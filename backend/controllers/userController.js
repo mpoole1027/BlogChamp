@@ -9,29 +9,40 @@ const getUsers = async (req, res) => {
 }
 
 
-// get a single post
-const getUser = async (req, res) => {
+// get a user post by id
+const getUserById = async (req, res) => {
   const {id} = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({error: 'No such user, invalid ID format'})
   }
 
-  const workout = await User.findById(id)
+  const user = await User.findById(id)
 
-  if (!workout) {
+  if (!user) {
     return res.status(404).json({error: 'No such user, user not found'})
   }
 
-  res.status(200).json(workout)
+  res.status(200).json(user)
 }
 
+// get a user post by id
+const getUserByUsername = async (req, res) => {
+  const {username} = req.params
+  const user = await User.findOne({username})
 
-// create a single post
+  if (!user) {
+    return res.status(404).json({error: 'No such user, user not found'})
+  }
+
+  res.status(200).json(user)
+}
+
+// create a single user
 const createUser = async (req, res) => {
   const {username, password, age, bio} = req.body
   
-  // add post to db
+  // add user to db
   try {
     const user = await User.create({username, password, age, bio})
     res.status(200).json(user)
@@ -82,7 +93,8 @@ const updateUser = async (req, res) => {
 module.exports = {
   createUser,
   getUsers,
-  getUser,
+  getUserById,
+  getUserByUsername,
   deleteUser,
   updateUser
 }
