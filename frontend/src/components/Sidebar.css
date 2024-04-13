@@ -2,31 +2,34 @@
 
 /* Adjust the width of the sidebar */
 .sidebar {
-    position: fixed; /* Set sidebar to fixed position */
-    top: 0; /* Position sidebar at the top of the viewport */
-    left: 0; /* Position sidebar at the left side of the viewport */
-    width: 25%; /* Set width of sidebar to 25% */
-    height: 100vh; /* Set height of sidebar to full viewport height */
-    background-color: #f0f0f0; /* Example background color */
-    overflow-y: auto; /* Enable vertical scrolling if content overflows */
-    justify-content: flex-start;
-    align-items: flex-end;
-  }
-  
-  .sidebar button {
-    display: block;
-    width: 90%;
-    padding: 20px;
-    margin-bottom: 10px;
-    background-color: #ddd;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .sidebar button:hover {
-    background-color: #ccc;
-  }
-  
-  .sidebar button:focus {
-    outline: none;
-  }
+  position: fixed; /* Set sidebar to fixed position */
+  top: 0; /* Position sidebar at the top of the viewport */
+  left: 0; /* Position sidebar at the left side of the viewport */
+  width: 25%; /* Set width of sidebar to 25% */
+  height: 100vh; /* Set height of sidebar to full viewport height */
+  background-color: #f0f0f0; /* Example background color */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.sidebar-button {
+  display: block;
+  width: 90%; /* Make buttons fill the entire width of the sidebar */
+  padding: 20px;
+  margin-bottom: 10px;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  text-align: center; /* Center align the text */
+  text-decoration: none; /* Remove underline */
+  color: #333; /* Set text color */
+}
+
+.sidebar-button:hover {
+  background-color: #ccc;
+}
+
+.sidebar-button:focus {
+  outline: none;
+}
