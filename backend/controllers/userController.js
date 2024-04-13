@@ -59,7 +59,7 @@ const deleteUser = async (req, res) => {
     return res.status(404).json({error: 'No such user, invalid ID format'})
   }
 
-  const workout = await Post.findOneAndDelete({_id: id})
+  const workout = await User.findOneAndDelete({_id: id})
 
   
   if (!workout) {
