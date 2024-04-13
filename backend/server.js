@@ -5,9 +5,12 @@ const mongoose = require('mongoose')
 const postRoutes = require('./routes/posts.js')
 const userRoutes = require('./routes/users.js')
 
+
 const commentRoutes = require('./routes/comments.js')
 
 const blogRoutes = require('./routes/blogs.js')
+
+const friendRoutes = require('./routes/friends.js')
 
 const cors = require("cors")
 
@@ -40,6 +43,7 @@ BlogChampApp.use('/api/comments', commentRoutes)
 
 BlogChampApp.use('/api/blogs', blogRoutes)
 
+BlogChampApp.use('/api/friends', friendRoutes)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
