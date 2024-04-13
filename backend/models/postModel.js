@@ -32,6 +32,12 @@ const postSchema = new Schema({
   title: {
     type: String,
     required: true
+  },
+
+  blog_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'Blog',
+    required: false
   }
 
 })
