@@ -7,10 +7,10 @@
   left: 0; /* Position sidebar at the left side of the viewport */
   width: 25%; /* Set width of sidebar to 25% */
   height: 100vh; /* Set height of sidebar to full viewport height */
-  background-color: #f0f0f0; /* Example background color */
-  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  background-color: #002454; /* Example background color */
   justify-content: flex-start;
   align-items: flex-end;
+  overflow: hidden; /* Hide any overflowing content */
 }
 
 .sidebar-button {
@@ -18,7 +18,7 @@
   width: 90%; /* Make buttons fill the entire width of the sidebar */
   padding: 20px;
   margin-bottom: 10px;
-  background-color: #ddd;
+  background-color: #FAC01A;
   border: none;
   cursor: pointer;
   text-align: center; /* Center align the text */
@@ -27,7 +27,7 @@
 }
 
 .sidebar-button:hover {
-  background-color: #ccc;
+  background-color: #DAA907;
 }
 
 .sidebar-button:focus {
