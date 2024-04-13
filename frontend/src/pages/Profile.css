@@ -1,33 +1,47 @@
-/* Post.css */
+/* Profile.css */
+
+/* Profile container */
+.profile {
+  display: flex;
+  overflow-x: hidden; /* Hide any overflowing content */
+  overflow-y: hidden; /* Hide any overflowing content */
+  color: #FAC01A; /* Set text color to yellow */
+}
 
 /* Main content area */
 .main-content {
-    margin-left: 25%; /* Set left margin to accommodate the sidebar */
-    width: 75%; /* Set width to 75% of the viewport */
-    height: 100vh; /* Set height to full viewport height */
-    background-color: #fff; /* Set background color */
-    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  flex: 0 0 50%; /* Set main content width to 50% */
+  background-color: #002454; /* Set background color */
+  padding: 20px; /* Add padding */
+  overflow: hidden; /* Hide any overflowing content */
+}
+
+/* Friends list area */
+.friends-list {
+  flex: 0 0 25%; /* Set friends list width to 25% */
+  background-color: #002454; /* Set background color */
+  padding: 20px; /* Add padding */
+  overflow: hidden; /* Hide any overflowing content */
+}
+
+/* Styles for post content */
+.profile-title {
+  font-size: 24px; /* Example font size for post title */
+  margin-bottom: 10px; /* Add margin below post title */
+  overflow: hidden; /* Hide any overflowing content */
+}
+
+.profile-content {
+  line-height: 1.6; /* Example line height for post content */
+  overflow: hidden; /* Hide any overflowing content */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .profile {
+    flex-direction: column; /* Change to column layout for small screens */
   }
-  
-  /* Styles for post content */
-  .post {
-    padding: 20px; /* Add padding to the post content */
+  .sidebar, .main-content, .friends-list {
+    flex: 0 0 100%; /* Set full width for small screens */
   }
-  
-  .post-title {
-    font-size: 24px; /* Example font size for post title */
-    margin-bottom: 10px; /* Add margin below post title */
-  }
-  
-  .post-content {
-    line-height: 1.6; /* Example line height for post content */
-  }
-  
-  /* Adjustments for smaller screens */
-  @media (max-width: 768px) {
-    .main-content {
-      margin-left: 0; /* Reset left margin for small screens */
-      width: 100%; /* Set width to 100% for small screens */
-    }
-  }
-  
+}

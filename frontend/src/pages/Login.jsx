@@ -6,6 +6,9 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  
+  const [newUsername, setNewUsername] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
   const navigate = useNavigate();
 
@@ -45,7 +48,8 @@ const Login = () => {
         username: username,
         password: password,
         age: 0,
-        bio: "Enter your bio here!"
+        bio: "Enter your bio here!",
+        email: "test123@nau.edu"
       }
       console.log(JSON.stringify(userData))
       return fetch(`http://localhost:4000/api/users/`, {
@@ -56,9 +60,9 @@ const Login = () => {
         body: JSON.stringify(userData)
     })
     }
-    if (username && password) {
+    if (newUsername && newPassword) {
       try {
-        const response = await addUser(username, password)
+        const response = await addUser(newUsername, newPassword)
         if (response.ok) {
             console.log('User created: ', username)
             console.log('Signup successful!')
@@ -84,8 +88,8 @@ const Login = () => {
       <button onClick={handleLogin}>Login</button>
 
       <h2>Sign Up</h2>
-      <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <input type="text" placeholder="Username" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
+      <input type="password" placeholder="Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
       <button onClick={handleSignUp}>Sign Up</button>
     </div>
 
