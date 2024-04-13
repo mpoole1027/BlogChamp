@@ -40,6 +40,7 @@ const getUserByUsername = async (req, res) => {
 
 // create a single user
 const createUser = async (req, res) => {
+  console.log(req.body)
   const {username, password, age, bio} = req.body
   
   // add user to db
@@ -59,7 +60,7 @@ const deleteUser = async (req, res) => {
     return res.status(404).json({error: 'No such user, invalid ID format'})
   }
 
-  const workout = await Post.findOneAndDelete({_id: id})
+  const workout = await User.findOneAndDelete({_id: id})
 
   
   if (!workout) {
