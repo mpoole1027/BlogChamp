@@ -4,7 +4,11 @@ const express = require('express')
 const mongoose = require('mongoose')
 const postRoutes = require('./routes/posts.js')
 const userRoutes = require('./routes/users.js')
+
+const commentRoutes = require('./routes/comments.js')
+
 const blogRoutes = require('./routes/blogs.js')
+
 const cors = require("cors")
 
 // set permissions for the front end
@@ -32,7 +36,10 @@ BlogChampApp.use('/api/posts', postRoutes)
 
 BlogChampApp.use('/api/users', userRoutes)
 
+BlogChampApp.use('/api/comments', commentRoutes)
+
 BlogChampApp.use('/api/blogs', blogRoutes)
+
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
