@@ -16,7 +16,7 @@ const cors = require("cors")
 
 // set permissions for the front end
 const corsOptions = {
-  origin: ["http://localhost:5173","http://127.0.0.1"]
+  origin: ["http://localhost:5173","http://127.0.0.1:5173/"]
 }
 
 // creates express app
