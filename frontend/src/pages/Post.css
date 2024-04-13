@@ -5,13 +5,15 @@
   margin-left: 25%; /* Set left margin to accommodate the sidebar */
   width: 75%; /* Set width to 75% of the viewport */
   height: 100vh; /* Set height to full viewport height */
-  background-color: #fff; /* Set background color */
-  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  background-color: #002454; /* Set background color */
+  overflow: hidden; /* Hide any overflowing content */
 }
 
 /* Styles for post content */
 .post {
   padding: 20px; /* Add padding to the post content */
+  overflow: hidden; /* Hide any overflowing content */
+  color: #FAC01A; /* Set text color to yellow */
 }
 
 .post-title {
@@ -23,10 +25,3 @@
   line-height: 1.6; /* Example line height for post content */
 }
 
-/* Adjustments for smaller screens */
-@media (max-width: 768px) {
-  .main-content {
-    margin-left: 0; /* Reset left margin for small screens */
-    width: 100%; /* Set width to 100% for small screens */
-  }
-}
