@@ -26,7 +26,7 @@ const getBlog = async (req, res) => {
   const workout = await Blog.findById(id)
 
   if (!workout) {
-    return res.status(404).json({error: 'No such blog, post not found'})
+    return res.status(404).json({error: 'No such blog, blog not found'})
   }
 
   res.status(200).json(workout)
@@ -35,11 +35,11 @@ const getBlog = async (req, res) => {
 
 // create a single blog
 const createBlog = async (req, res) => {
-  const {posts} = req.body
+  const {user, title, contents, creation_date} = req.body
   
   // add post to db
   try {
-    const Blog = await Blog.create({posts})
+    const blog = await Blog.create({user, title, contents, creation_date})
     res.status(200).json(blog)
   } catch (error) {
     res.status(400).json({error: error.message})
