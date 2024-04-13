@@ -26,14 +26,22 @@ const getPost = async (req, res) => {
   res.status(200).json(workout)
 }
 
+const getPostsByUserID = async (req, res) => {
+  const {id} = req.params
+  console.log(req.params)
+  const posts =  await Post.find({user_id : id})
+
+  res.status(200).json(posts)
+}
+
 
 // create a single post
 const createPost = async (req, res) => {
-  const {like_count, num_comments, date_posted, user} = req.body
+  const {like_count, num_comments, date_posted, user_id} = req.body
   
   // add post to db
   try {
-    const post = await Post.create({like_count, num_comments, date_posted, user})
+    const post = await Post.create({like_count, num_comments, date_posted, user_id})
     res.status(200).json(post)
   } catch (error) {
     res.status(400).json({error: error.message})
@@ -84,5 +92,6 @@ module.exports = {
   getPosts,
   getPost,
   deletePost,
-  updatePost
+  updatePost,
+  getPostsByUserID
 }
