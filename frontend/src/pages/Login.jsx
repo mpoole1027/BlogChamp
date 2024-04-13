@@ -7,13 +7,32 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
+    const fetchUserByUsername = (username) => {
+      return fetch(`http://localhost:4000/api/users/username/${username}`)
+    }
+
     // Here you can implement your login logic, like sending a request to your backend
     // For simplicity, let's just check if username and password are not empty
     if (username && password) {
-      // If login is successful, you can redirect the user or do any other actions
-      console.log('Login successful!');
-      setErrorMessage('');
+      try {
+        const response = await fetchUserByUsername(username)
+        const user = await response.json()
+
+        if (response.ok) {
+          if (user) {
+            console.log('User found: ', user.username)
+            console.log('Login successful!')
+          } else {
+            setErrorMessage('User not found. Please enter a valid username.')
+          }
+        } else {
+          setErrorMessage('Error fetching user data. Please try again later.')
+        }
+      } catch (error) {
+        console.error('Error fetching user: ', error)
+        setErrorMessage('An error occured. Please try again later. ')
+      }
     } else {
       setErrorMessage('Please enter both username and password.');
     }

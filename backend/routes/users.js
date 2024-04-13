@@ -4,7 +4,8 @@ const express = require('express')
 const {
   createUser,
   getUsers,
-  getUser,
+  getUserById,
+  getUserByUsername,
   deleteUser,
   updateUser,
 } = require('../controllers/userController')
@@ -13,8 +14,11 @@ const router = express.Router()
 // GET all posts
 router.get('/', getUsers)
 
-// GET a single post
-router.get('/:id', getUser)
+// GET a single user by ID
+router.get('/id/:id', getUserById)
+
+// GET a single user by ID
+router.get('/username/:username', getUserByUsername)
 
 // POST a new post
 router.post('/', createUser)
