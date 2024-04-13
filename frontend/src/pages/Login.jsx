@@ -36,8 +36,8 @@ const Login = () => {
       <button onClick={handleLogin}>Login</button>
 
       <h2>Sign Up</h2>
-      <input type="text" placeholder="newUsername" value={username} onChange={(e) => setNewUsername(e.target.value)} />
-      <input type="password" placeholder="newPassword" value={password} onChange={(e) => setNewPassword(e.target.value)} />
+      <input type="text" placeholder="Username" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
+      <input type="password" placeholder="Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
       <button onClick={handleLogin}>Login</button>
     </div>
 
