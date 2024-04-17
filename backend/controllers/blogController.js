@@ -10,9 +10,19 @@ const getBlogs = async (req, res) => {
 
 // get all posts
 const getPosts = async (req, res) => {
-  const posts = await Post.find({}).sort({createdAt: -1})
+  const blogId = req.params.id; 
 
-  res.status(200).json(posts)
+  if (!mongoose.Types.ObjectId.isValid(blogId)) {
+    return res.status(404).json({ error: 'Invalid blog ID format' });
+  }
+
+  try {
+    const posts = await Post.find({ blog_id: blogId }).sort({ createdAt: -1 });
+
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
 
 // get a single blog
