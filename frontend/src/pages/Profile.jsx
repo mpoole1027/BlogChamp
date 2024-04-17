@@ -1,26 +1,47 @@
 // ProfilePage.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import './Profile.css';
 
 const Profile = () => {
-  // You can replace these with actual username and bio data from your backend or state
-  const username = "JohnDoe";
-  const bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+  const username = "Izaac"; // Hardcoded username
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch(`http://localhost:4000/api/users/username/${username}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch user data');
+        }
+        const userData = await response.json();
+        setUser(userData);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+    fetchUser();
+  }, []);
 
   return (
     <div className="profile">
       <div className="sidebar">
         <Sidebar />
       </div>
-      <div className="main-content"> {/* Update class name */}
+      <div className="main-content">
         <h1>Profile</h1>
-        <div>
-          <h2>Username: {username}</h2>
-          <p>Bio: {bio}</p>
-        </div>
+        {user && (
+          <div>
+            <h2>Username: {user.username}</h2>
+            <p>Bio: {user.bio}</p>
+            <p>Email: {user.email}</p>
+            <p>Age: {user.age}</p>
+          </div>
+        )}
+        {error && <p>Error: {error}</p>}
       </div>
-      <div className="friends-list"> {/* New section for Friends list */}
+      <div className="friends-list">
         <h2>Friends List</h2>
         {/* Add your Friends list component here */}
       </div>
@@ -29,4 +50,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
