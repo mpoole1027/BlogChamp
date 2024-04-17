@@ -6,7 +6,7 @@ import './Profile.css';
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-  const username = "Izaac"; // Hardcoded username
+  const username = "test5_test5"; // Hardcoded username
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -30,13 +30,14 @@ const Profile = () => {
         <Sidebar />
       </div>
       <div className="main-content">
-        <h1>Profile</h1>
+        <h1 className="profile-title">Profile</h1>
         {user && (
-          <div>
+          <div className="profile-info">
             <h2>Username: {user.username}</h2>
-            <p>Bio: {user.bio}</p>
-            <p>Email: {user.email}</p>
-            <p>Age: {user.age}</p>
+            <div className="bio-box">
+              <h3>Bio</h3>
+              <p>{user.bio}</p>
+            </div>
           </div>
         )}
         {error && <p>Error: {error}</p>}
@@ -50,3 +51,4 @@ const Profile = () => {
 };
 
 export default Profile;
+
