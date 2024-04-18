@@ -5,7 +5,6 @@
   display: flex;
   overflow-x: hidden; /* Hide any overflowing content */
   overflow-y: hidden; /* Hide any overflowing content */
-  color: #FAC01A; /* Set text color to yellow */
 }
 
 /* Main content area */
@@ -14,7 +13,20 @@
   background-color: #002454; /* Set background color */
   padding: 20px; /* Add padding */
   overflow: hidden; /* Hide any overflowing content */
-  
+}
+
+/* Profile info */
+.profile-info {
+  color: #FAC01A; /* Set text color to white */
+}
+
+/* Bio box */
+.bio-box {
+  background-color: #3366d5d8;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 /* Friends list area */
@@ -23,19 +35,22 @@
   background-color: #002454; /* Set background color */
   padding: 20px; /* Add padding */
   overflow: hidden; /* Hide any overflowing content */
-  
 }
 
 /* Styles for post content */
 .profile-title {
-  font-size: 24px; /* Example font size for post title */
-  margin-bottom: 10px; /* Add margin below post title */
-  overflow: hidden; /* Hide any overflowing content */
+  font-size: 24px; /* Example font size for profile title */
+  margin-bottom: 10px; /* Add margin bottom */
 }
 
-.profile-content {
-  line-height: 1.6; /* Example line height for post content */
-  overflow: hidden; /* Hide any overflowing content */
+/* Make h2 tag yellow */
+.main-content h2 {
+  color: #FAC01A;
+}
+
+/* Make h2 tag yellow inside .friends-list */
+.friends-list h2 {
+  color: #FAC01A;
 }
 
 /* Adjustments for smaller screens */
