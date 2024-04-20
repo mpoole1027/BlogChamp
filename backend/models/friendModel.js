@@ -3,13 +3,13 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const friendSchema = new Schema({
-  user: {
+  user_one: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
 
-  friend_id: {
+  user_two: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true

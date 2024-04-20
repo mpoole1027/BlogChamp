@@ -29,11 +29,11 @@ const getFriend = async (req, res) => {
 
 // create a single friend
 const createFriend = async (req, res) => {
-  const {user, friend_id} = req.body
+  const {user_one, user_two} = req.body
   
   // add friend to db
   try {
-    const friend = await Friend.create({user, friend_id})
+    const friend = await Friend.create({user_one, user_two})
     res.status(200).json(friend)
   } catch (error) {
     res.status(400).json({error: error.message})

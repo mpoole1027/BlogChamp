@@ -4,19 +4,23 @@ const express = require('express')
 const mongoose = require('mongoose')
 const postRoutes = require('./routes/posts.js')
 const userRoutes = require('./routes/users.js')
-
-
 const commentRoutes = require('./routes/comments.js')
-
 const blogRoutes = require('./routes/blogs.js')
-
 const friendRoutes = require('./routes/friends.js')
+const loginRoutes = require('./routes/login.js')
 
 const cors = require("cors")
 
 // set permissions for the front end
 const corsOptions = {
-  origin: ["http://localhost:5173","http://127.0.0.1:5173"]
+  origin: ["http://localhost:5173","http://127.0.0.1:5173"],
+  credentials: true,
+  allowedHeaders: [
+    "set-cookie",
+    "Content-Type",
+    "Access-Control-Allow-Origin",
+    "Access-Control-Allow-Credentials",
+  ],
 }
 
 // creates express app
@@ -44,6 +48,9 @@ BlogChampApp.use('/api/comments', commentRoutes)
 BlogChampApp.use('/api/blogs', blogRoutes)
 
 BlogChampApp.use('/api/friends', friendRoutes)
+
+// add route for login verfication
+BlogChampApp.use(loginRoutes)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
