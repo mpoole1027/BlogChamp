@@ -1,52 +1,49 @@
 // Facades.js
 
 // userFacade class
-class UserFacade {
-  constructor(username, password, email, age, bio) {
-      this.username = username;
-      this.password = password;
-      this.email = email;
-      this.age = age;
-      this.bio = bio;
+
+export class UserFacade {
+    constructor(username, password, email, age, bio) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.age = age;
+        this.bio = bio;
+    }
+  
+    static async createUser(userData) {
+        try {
+            const response = await fetch(`http://localhost:4000/api/users/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
+  
+            if (response.ok) {
+                const user = await response.json();
+                return user;
+            } else {
+                throw new Error('Error saving user data. Please try again later.');
+            }
+        } catch (error) {
+            throw new Error('An error occurred. Please try again later.');
+        }
+    }
+  
+    static async fetchUserByUsername(username) {
+        try {
+            const response = await fetch(`http://localhost:4000/api/users/username/${username}`);
+            return response;
+        } catch (error) {
+            throw new Error('An error occurred. Please try again later.');
+        }
+    }
   }
+  
 
-  static async createUser(userData) {
-      try {
-          const response = await fetch(`http://localhost:4000/api/users/`, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(userData)
-          });
-
-          if (response.ok) {
-              const user = await response.json();
-              return user;
-          } else {
-              throw new Error('Error saving user data. Please try again later.');
-          }
-      } catch (error) {
-          throw new Error('An error occurred. Please try again later.');
-      }
-  }
-
-  static async getUserByUsername(username) {
-      try {
-          const response = await fetch(`http://localhost:4000/api/users/username/${username}`);
-          if (response.ok) {
-              const user = await response.json();
-              return user;
-          } else {
-              throw new Error('User not found. Please enter a valid username.');
-          }
-      } catch (error) {
-          throw new Error('An error occurred. Please try again later.');
-      }
-  }
-}
-
-class PostFacade {
+export class PostFacade {
   constructor(like_count, num_comments, date_created, user_id, content, title, blog_id) {
       this.like_count = like_count;
       this.num_comments = num_comments;
@@ -80,7 +77,7 @@ class PostFacade {
 }
 
 // blogFacade class
-class BlogFacade {
+export class BlogFacade {
   constructor(user, title, contents, creation_date) {
       this.user = user;
       this.title = title;
@@ -109,5 +106,3 @@ class BlogFacade {
       }
   }
 }
-
-module.exports = { UserFacade, PostFacade, BlogFacade };
