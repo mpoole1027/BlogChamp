@@ -56,7 +56,8 @@ const Login = () => {
               })
             })
             if (response.status == 200){
-              localStorage.setItem('username', username);
+              console.log(user);
+              localStorage.setItem('username', user._id);
               navigate('/Post');
             }
           } else {
