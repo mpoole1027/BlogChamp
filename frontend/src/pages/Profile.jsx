@@ -15,7 +15,7 @@ const Profile = () => {
     const fetchUser = async () => {
       try {
         // Use stored username to fetch user data
-        const response = await fetch(`http://localhost:4000/api/users/username/${storedUsername}`);
+        const response = await fetch(`http://localhost:4000/api/users/id/${storedUsername}`);
         if (!response.ok) {
           throw new Error('Failed to fetch user data');
         }
