@@ -35,6 +35,7 @@ const Login = () => {
     if (username && password) {
       try {
         const user = await UserFacade.fetchUserByUsername(username);
+        console.log('user:', user);
         if (user) {
           console.log('User found: ', user.username);
           console.log('Login successful!');
