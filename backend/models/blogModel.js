@@ -22,8 +22,7 @@ const blogSchema = new Schema({
   creation_date: {
     type: Date,
     required: true
-  },
-
+  }
 })
 
 module.exports = mongoose.model('Blog', blogSchema)

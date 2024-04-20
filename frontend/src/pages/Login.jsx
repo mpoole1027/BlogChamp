@@ -34,12 +34,10 @@ const Login = () => {
     // Check if username and password are valid
     if (username && password) {
       try {
-        // Call getUserByUsername method from UserFacade
         const user = await UserFacade.getUserByUsername(username);
         if (user) {
           console.log('User found: ', user.username);
           console.log('Login successful!');
-          // Assuming login API endpoint is "/login"
           const response = await fetch("http://localhost:4000/login", {
             method: "POST",
             credentials: "include",
@@ -52,7 +50,9 @@ const Login = () => {
             }),
           });
           if (response.status === 200) {
-            navigate('/Post');
+              console.log(user);
+              localStorage.setItem('username', user._id);
+              navigate('/Post');
           }
         } else {
           setErrorMessage('User not found. Please enter a valid username.');
@@ -84,11 +84,11 @@ const Login = () => {
   
         // Create a new user if the username is available
         const newUser = new UserFacade(newUsername, newPassword, "test123@nau.edu", 0, "Enter your bio here!");
-        const createUserResponse = await UserFacade.createUser(newUser);
-        if (createUserResponse) {
+        var response = await UserFacade.createUser(newUser);
+        if (response) {
           console.log('User created: ', newUsername);
           console.log('Signup successful!');
-          const loginResponse = await fetch("http://localhost:4000/login", {
+          response = await fetch("http://localhost:4000/login", {
             method: "POST",
             credentials: "include",
             headers: {
@@ -99,7 +99,7 @@ const Login = () => {
               password: newPassword,
             }),
           });
-          if (loginResponse.status === 200) {
+          if (response.status === 200) {
             navigate('/Post');
           }
         } else {
@@ -115,28 +115,33 @@ const Login = () => {
   };
 
   return (
-    <div className='page'>
+    <div className = 'page'>
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       <div className='title'>
         <h1> BlogChamp</h1>
       </div>
 
-      <div className='container'>
+      <div className = 'container'>
+
         <div className='login'>
+
           <h2>Login</h2>
           <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
           <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
           <button onClick={handleLogin}>Login</button>
+
         </div>
 
         <div className='signup'>
+
           <h2>Sign Up</h2>
           <input type="text" placeholder="Username" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
           <input type="password" placeholder="Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
           <button onClick={handleSignUp}>Sign Up</button>
+
         </div>
       </div>
 
-      {errorMessage && <div className="error">{errorMessage}</div>}
     </div>
   );
 };

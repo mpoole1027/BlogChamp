@@ -8,23 +8,6 @@ const getBlogs = async (req, res) => {
   res.status(200).json(blogs)
 }
 
-// get all posts
-const getPosts = async (req, res) => {
-  const blogId = req.params.id; 
-
-  if (!mongoose.Types.ObjectId.isValid(blogId)) {
-    return res.status(404).json({ error: 'Invalid blog ID format' });
-  }
-
-  try {
-    const posts = await Post.find({ blog_id: blogId }).sort({ createdAt: -1 });
-
-    res.status(200).json(posts);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-}
-
 // get a single blog
 const getBlog = async (req, res) => {
   const {id} = req.params
@@ -68,7 +51,7 @@ const deleteBlog = async (req, res) => {
 
   
   if (!workout) {
-    return res.status(404).json({error: 'No such blog, post not found'})
+    return res.status(404).json({error: 'No such blog, blog not found'})
   }
 
   res.status(200).json(workout)
@@ -89,7 +72,7 @@ const updateBlog = async (req, res) => {
 
   
   if (!workout) {
-    return res.status(404).json({error: 'No such blog, post not found'})
+    return res.status(404).json({error: 'No such blog, blog not found'})
   }
 
   res.status(200).json(workout)
@@ -100,6 +83,5 @@ module.exports = {
   getBlogs,
   getBlog,
   deleteBlog,
-  updateBlog,
-  getPosts
+  updateBlog
 }
