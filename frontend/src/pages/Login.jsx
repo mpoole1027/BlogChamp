@@ -34,7 +34,8 @@ const Login = () => {
     // Check if username and password are valid
     if (username && password) {
       try {
-        const user = await UserFacade.getUserByUsername(username);
+        const user = await UserFacade.fetchUserByUsername(username);
+        console.log('user:', user);
         if (user) {
           console.log('User found: ', user.username);
           console.log('Login successful!');

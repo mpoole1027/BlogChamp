@@ -35,9 +35,10 @@ export class UserFacade {
     static async fetchUserByUsername(username) {
         try {
             const response = await fetch(`http://localhost:4000/api/users/username/${username}`);
-            return response;
+            const user = await response.json(); // Wait for response data
+            return user;
         } catch (error) {
-            throw new Error('An error occurred. Please try again later.');
+            throw new Error('An error occurred. Grabbing username.');
         }
     }
 
