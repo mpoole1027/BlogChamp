@@ -24,7 +24,4 @@ router.delete('/:id', deleteBlog);
 // UPDATE a blog
 router.patch('/:id', updateBlog);
 
-// GET all posts
-router.get('/:id/posts', getPosts);
-
 module.exports = router;
