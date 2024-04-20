@@ -56,7 +56,8 @@ const Login = () => {
               })
             })
             if (response.status == 200){
-               navigate('/Post');
+              localStorage.setItem('username', username);
+              navigate('/Post');
             }
           } else {
             setErrorMessage('User not found. Please enter a valid username.')
@@ -109,7 +110,7 @@ const Login = () => {
               })
             })
             if (response.status == 200){
-               navigate('/Post');
+              navigate(`/Post`);
             }
             navigate('/Post');
         } else {
