@@ -25,16 +25,20 @@ const Post = () => {
       <div className="sidebar">
         <Sidebar />
       </div>
-      <div className="main-content"> {/* Update class name */}
+      <div className="main-content">
         <h1>Posts</h1>
         {/* Check if posts array is not null or empty */}
         {posts && posts.length > 0 && (
           posts.map((post) => (
-            <PostDetails key={post._id} post={post} />
+            // Display the post only if blog_id is null
+            post.blog_id == null && (
+              <PostDetails key={post._id} post={post} />
+            )
           ))
         )}
       </div>
-    </div>
+</div>
+
   );
 };
 
