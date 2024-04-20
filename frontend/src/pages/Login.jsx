@@ -1,7 +1,7 @@
-// Login.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'; // Import the CSS file
+import { UserFacade } from './Facades.js'; 
+import './Login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -13,30 +13,53 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    const fetchUserByUsername = (username) => {
-      return fetch(`http://localhost:4000/api/users/username/${username}`)
+  useEffect(() => {
+    async function autoLogin() {
+      const response = await fetch("http://localhost:4000/autoLogin", {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (response.status === 200) {
+        navigate("/post");
+      } else {
+        navigate("/");
+      }
     }
-    // Check if username and password are valid (you can replace this with your authentication logic)
+
+    autoLogin();
+  }, []);
+
+  const handleLogin = async () => {
+    // Check if username and password are valid
     if (username && password) {
       try {
-        const response = await fetchUserByUsername(username)
-        const user = await response.json()
-
-        if (response.ok) {
-          if (user) {
-            console.log('User found: ', user.username)
-            console.log('Login successful!')
+        // Call getUserByUsername method from UserFacade
+        const user = await UserFacade.getUserByUsername(username);
+        if (user) {
+          console.log('User found: ', user.username);
+          console.log('Login successful!');
+          // Assuming login API endpoint is "/login"
+          const response = await fetch("http://localhost:4000/login", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              id: user.username,
+              password: user.password,
+            }),
+          });
+          if (response.status === 200) {
             navigate('/Post');
-          } else {
-            setErrorMessage('User not found. Please enter a valid username.')
           }
         } else {
-          setErrorMessage('Error fetching user data. Please try again later.')
+          setErrorMessage('User not found. Please enter a valid username.');
         }
       } catch (error) {
-        console.error('Error fetching user: ', error)
-        setErrorMessage('An error occured. Please try again later. ')
+        console.error('Error fetching user: ', error);
+        setErrorMessage('An error occurred. Please try again later.');
       }
     } else {
       setErrorMessage('Please enter both username and password.');
@@ -44,74 +67,77 @@ const Login = () => {
   };
 
   const handleSignUp = async () => {
-    const addUser = (username, password) => {
-      const userData = {
-        username: username,
-        password: password,
-        age: 0,
-        bio: "Enter your bio here!",
-        email: "test123@nau.edu"
-      }
-      console.log(JSON.stringify(userData))
-      return fetch(`http://localhost:4000/api/users/`, {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-    })
-    }
     if (newUsername && newPassword) {
       try {
-        const response = await addUser(newUsername, newPassword)
-        if (response.ok) {
-            console.log('User created: ', username)
-            console.log('Signup successful!')
-            navigate('/Post');
+        // Check if the user already exists
+        const checkUserResponse = await UserFacade.getUserByUsername(newUsername);
+        if (checkUserResponse.ok) {
+          const user = await checkUserResponse.json();
+          if (user) {
+            setErrorMessage('Username already exists. Please choose a different one.');
+            return;
+          }
         } else {
-          setErrorMessage('Error saving user data. Please try again later.')
+          setErrorMessage('Error checking username availability. Please try again later.');
+          return;
+        }
+  
+        // Create a new user if the username is available
+        const newUser = new UserFacade(newUsername, newPassword, "test123@nau.edu", 0, "Enter your bio here!");
+        const createUserResponse = await UserFacade.createUser(newUser);
+        if (createUserResponse) {
+          console.log('User created: ', newUsername);
+          console.log('Signup successful!');
+          const loginResponse = await fetch("http://localhost:4000/login", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              id: newUsername,
+              password: newPassword,
+            }),
+          });
+          if (loginResponse.status === 200) {
+            navigate('/Post');
+          }
+        } else {
+          setErrorMessage('Error creating user. Please try again later.');
         }
       } catch (error) {
-        console.error('Error adding user: ', error)
-        setErrorMessage('An error occured. Please try again later. ')
+        console.error('Error adding user: ', error);
+        setErrorMessage('An error occurred. Please try again later.');
       }
     } else {
       setErrorMessage('Please enter both username and password.');
     }
-    
   };
 
   return (
-    <div className = 'page'>
-
+    <div className='page'>
       <div className='title'>
         <h1> BlogChamp</h1>
       </div>
 
-      <div className = 'container'>
-
+      <div className='container'>
         <div className='login'>
-
           <h2>Login</h2>
           <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
           <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
           <button onClick={handleLogin}>Login</button>
-
         </div>
 
         <div className='signup'>
-
           <h2>Sign Up</h2>
           <input type="text" placeholder="Username" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
           <input type="password" placeholder="Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
           <button onClick={handleSignUp}>Sign Up</button>
-
         </div>
       </div>
 
+      {errorMessage && <div className="error">{errorMessage}</div>}
     </div>
-
-    
   );
 };
 
