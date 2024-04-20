@@ -1,5 +1,5 @@
 // Login.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'; // Import the CSS file
 
@@ -13,26 +13,56 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    async function autoLogin() {
+      const response = await fetch("http://localhost:4000/autoLogin", {
+        method: "GET",
+        credentials: "include",
+      })
+
+      if (response.status == 200) {
+        navigate("/post")
+      } else {
+        navigate("/")
+      }
+    }
+
+    autoLogin()
+  }, [])
+
   const handleLogin = async () => {
     const fetchUserByUsername = (username) => {
       return fetch(`http://localhost:4000/api/users/username/${username}`)
     }
-    // Check if username and password are valid (you can replace this with your authentication logic)
+    // Check if username and password are valid
     if (username && password) {
       try {
-        const response = await fetchUserByUsername(username)
+        var response = await fetchUserByUsername(username)
         const user = await response.json()
 
         if (response.ok) {
           if (user) {
             console.log('User found: ', user.username)
             console.log('Login successful!')
-            navigate('/Post');
+            response = await fetch("http://localhost:4000/login", {
+              method: "POST",
+              credentials: "include",
+              headers: {
+                "Content-type": "application/json",
+              },
+              body: JSON.stringify({
+                id: user.username,
+                password: user.password,
+              })
+            })
+            if (response.status == 200){
+               navigate('/Post');
+            }
           } else {
             setErrorMessage('User not found. Please enter a valid username.')
           }
         } else {
-          setErrorMessage('Error fetching user data. Please try again later.')
+          setErrorMessage('User not found, please try again')
         }
       } catch (error) {
         console.error('Error fetching user: ', error)
@@ -63,10 +93,24 @@ const Login = () => {
     }
     if (newUsername && newPassword) {
       try {
-        const response = await addUser(newUsername, newPassword)
+        var response = await addUser(newUsername, newPassword)
         if (response.ok) {
             console.log('User created: ', username)
             console.log('Signup successful!')
+            response = await fetch("http://localhost:4000/login", {
+              method: "POST",
+              credentials: "include",
+              headers: {
+                "Content-type": "application/json",
+              },
+              body: JSON.stringify({
+                id: newUsername,
+                password: newPassword,
+              })
+            })
+            if (response.status == 200){
+               navigate('/Post');
+            }
             navigate('/Post');
         } else {
           setErrorMessage('Error saving user data. Please try again later.')
@@ -83,7 +127,7 @@ const Login = () => {
 
   return (
     <div className = 'page'>
-
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       <div className='title'>
         <h1> BlogChamp</h1>
       </div>
