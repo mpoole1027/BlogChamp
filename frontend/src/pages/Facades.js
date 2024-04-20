@@ -40,6 +40,15 @@ export class UserFacade {
             throw new Error('An error occurred. Please try again later.');
         }
     }
+
+    static async fetchUserByUserid(user_id) {
+        try {
+            const response = await fetch(`http://localhost:4000/api/users/id/${user_id}`);
+            return response;
+        } catch (error) {
+            throw new Error('An error occurred. Please try again later.');
+        }
+    }
   }
   
 

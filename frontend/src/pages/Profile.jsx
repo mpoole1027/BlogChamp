@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
+import { UserFacade } from './Facades.js';
 import './Profile.css';
+
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -15,7 +17,7 @@ const Profile = () => {
     const fetchUser = async () => {
       try {
         // Use stored username to fetch user data
-        const response = await fetch(`http://localhost:4000/api/users/id/${storedUsername}`);
+        const response = await UserFacade.fetchUserByUserid(storedUsername);
         if (!response.ok) {
           throw new Error('Failed to fetch user data');
         }
