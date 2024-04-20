@@ -23,13 +23,14 @@ const Sidebar = () => {
     } catch (error) {
       console.error("Error signing out:", error);
     }
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [postTitle, setPostTitle] = useState('');
-    const [postContent, setPostContent] = useState('');
+  }
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [postTitle, setPostTitle] = useState('');
+  const [postContent, setPostContent] = useState('');
 
-    const openDialog = () => {
-      setIsDialogOpen(true);
-    };
+  const openDialog = () => {
+    setIsDialogOpen(true);
+  };
 
   const closeDialog = () => {
     setIsDialogOpen(false);
@@ -63,8 +64,8 @@ const Sidebar = () => {
       <Link to={`/profile/${storedUsername}`} className="sidebar-button">Profile</Link>
       <Link to="/" onClick={signOut} className="sidebar-button">Logout</Link>
       <Link className="sidebar-button" onClick={openDialog}>Create Post</Link>
-      {/* Create Post Box */}
-      {isDialogOpen && (
+    {/* Create Post Box */}
+    {isDialogOpen && (
         <div className="dialog">
           <div className="sidebar-button">
             <h1>Create Post</h1>
