@@ -1,17 +1,21 @@
-// ProfilePage.jsx
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import './Profile.css';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-  const username = "test5_test5"; // Hardcoded username
+  const { username } = useParams(); // Get username from URL parameter
 
   useEffect(() => {
+    // Retrieve username from local storage
+    const storedUsername = localStorage.getItem('username');
+    
     const fetchUser = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/api/users/username/${username}`);
+        // Use stored username to fetch user data
+        const response = await fetch(`http://localhost:4000/api/users/id/${storedUsername}`);
         if (!response.ok) {
           throw new Error('Failed to fetch user data');
         }

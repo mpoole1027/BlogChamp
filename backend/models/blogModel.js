@@ -22,9 +22,7 @@ const blogSchema = new Schema({
   creation_date: {
     type: Date,
     required: true
-  },
-
-  posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }]
+  }
 })
 
 module.exports = mongoose.model('Blog', blogSchema)
