@@ -1,6 +1,3 @@
-import { PostFacade } from '../pages/Facades.js';
-
-
 const PostDetails = ({ post }) => {
   // Parse the date string into a Date object
   const datePosted = new Date(post.date_posted);
@@ -20,7 +17,6 @@ const PostDetails = ({ post }) => {
       <div className="metadata">
         {/* Use the formatted date */}
         <p>{`Likes: ${post.like_count} Comments: ${post.num_comments} Date Posted: ${formattedDate}`}</p>
-        <button type="button" onClick={handleLike}>Like</button>
       </div>
     </div>
   );
