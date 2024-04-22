@@ -45,7 +45,8 @@ export class UserFacade {
     static async fetchUserByUserid(user_id) {
         try {
             const response = await fetch(`http://localhost:4000/api/users/id/${user_id}`);
-            return response;
+            const userData = await response.json();
+            return userData;
         } catch (error) {
             throw new Error('An error occurred. Please try again later.');
         }
@@ -116,4 +117,21 @@ export class BlogFacade {
           throw new Error('An error occurred. Please try again later.');
       }
   }
+}
+
+export class FriendFacade {
+    constructor(user_one, user_two){
+        this.user_one = user_one;
+        this.user_two = user_two;
+    }
+
+    static async fetchFriendsByUserid(user_one){
+        try {
+            const response = await fetch(`http://localhost:4000/api/friends/user_id/${user_one}`);
+            const users = await response.json(); // Wait for response data
+            return users;
+        } catch (error) {
+            throw new Error('An error occurred. Grabbing friends.');
+        }
+    }
 }
