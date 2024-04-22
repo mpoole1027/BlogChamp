@@ -45,7 +45,8 @@ export class UserFacade {
     static async fetchUserByUserid(user_id) {
         try {
             const response = await fetch(`http://localhost:4000/api/users/id/${user_id}`);
-            return response;
+            const userData = await response.json();
+            return userData;
         } catch (error) {
             throw new Error('An error occurred. Please try again later.');
         }
