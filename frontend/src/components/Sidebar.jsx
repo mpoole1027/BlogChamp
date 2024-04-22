@@ -57,7 +57,7 @@ const Sidebar = () => {
       num_comments: 0, // Default value for number of comments
       date_posted: new Date().toISOString(), // Current date and time
       // Include any other necessary data here, such as user ID or blog ID
-      user_id: '661b0316383670a695bfaf3c', // Replace with the actual user ID
+      user_id: storedUsername, // Replace with the actual user ID
       content: postContent,
       title: postTitle,
       blog_id: null, // Replace with the actual blog ID
