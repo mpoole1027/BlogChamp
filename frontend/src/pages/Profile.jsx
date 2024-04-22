@@ -18,11 +18,8 @@ const Profile = () => {
       try {
         // Use stored username to fetch user data
         const response = await UserFacade.fetchUserByUserid(storedUsername);
-        if (!response.ok) {
-          throw new Error('Failed to fetch user data');
-        }
-        const userData = await response.json();
-        setUser(userData);
+        console.log(response);
+        setUser(response);
       } catch (error) {
         setError(error.message);
       }
