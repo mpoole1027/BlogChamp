@@ -2,5 +2,14 @@
     margin: 0 25px; /* Add a 25px margin on both sides of each post */
     border-bottom: 1px solid #ccc; /* Add a thin gray border to separate posts */
     padding-bottom: 20px; /* Add padding to the bottom of each post */
+    overflow-y : auto; 
   }
+
+.metadata {
+  overflow-y : visible; 
+}
+
+.content {
+  overflow-y : visible; 
+}
   

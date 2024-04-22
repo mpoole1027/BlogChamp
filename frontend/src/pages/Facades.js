@@ -84,6 +84,20 @@ export class PostFacade {
           throw new Error('An error occurred. Please try again later.');
       }
   }
+  async likePost() {
+
+    console.log("made it to add like method")
+    try {
+        // Simulate liking the post by incrementing the like_count property locally
+        this.like_count++;
+
+        console.log("Liking post successful")
+    } catch (error) {
+        throw new Error('An error occurred while liking the post.');
+
+    }
+}
+  
 }
 
 // blogFacade class
