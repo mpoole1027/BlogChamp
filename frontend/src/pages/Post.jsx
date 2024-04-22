@@ -38,7 +38,7 @@ const Post = () => {
           ))
         )}
       </div>
-</div>
+    </div>
 
   );
 };
