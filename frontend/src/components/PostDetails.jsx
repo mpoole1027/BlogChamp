@@ -44,7 +44,6 @@ const PostDetails = ({ post }) => {
       <div className="metadata">
         {/* Use the formatted date */}
         <p>{`Likes: ${post.like_count} Comments: ${post.num_comments} Date Posted: ${formattedDate}`}</p>
-        <button type="button" onClick={handleLike}>Like</button>
       </div>
     </div>
   );
