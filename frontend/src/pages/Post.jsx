@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 const Post = () => {
   const [posts, setPosts] = useState(null)
   
+  
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch('http://localhost:4000/api/posts')
