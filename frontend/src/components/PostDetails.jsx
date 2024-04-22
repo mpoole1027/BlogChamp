@@ -13,10 +13,6 @@ const PostDetails = ({ post }) => {
   // Concatenate the formatted date
   const formattedDate = `${month} ${day}, ${year}`;
 
-  const handleLike = async (event) => {
-    PostFacade.addLike
-  }
-
   return (
     <div className="post-details">
       <h4>{post.title}</h4>
