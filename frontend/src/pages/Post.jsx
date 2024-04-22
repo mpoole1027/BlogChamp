@@ -26,7 +26,7 @@ const Post = () => {
       <div className="sidebar">
         <Sidebar />
       </div>
-      <div className="main-content">
+      <div className="main-content" >
         <h1>Posts</h1>
         {/* Check if posts array is not null or empty */}
         {posts && posts.length > 0 && (
