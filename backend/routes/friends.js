@@ -6,7 +6,8 @@ const {
   getFriends,
   getFriend,
   deleteFriend,
-  updateFriend
+  updateFriend,
+  getFriendsByUserid
 } = require('../controllers/friendsController')
 const router = express.Router()
 
@@ -15,6 +16,9 @@ router.get('/', getFriends)
 
 // GET a single post
 router.get('/:id', getFriend)
+
+// GET all friends of a user
+router.get('/user_id/:id', getFriendsByUserid )
 
 // POST a new friend
 router.post('/', createFriend)
