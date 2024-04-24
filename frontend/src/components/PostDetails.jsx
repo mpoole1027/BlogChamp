@@ -33,10 +33,10 @@ const PostDetails = ({ post }) => {
       <h4>{post.title}</h4>
       <p className="content">{post.content}</p>
       <div className="metadata">
-        {/* Render like button and current like count */}
-        <button onClick={handleLike}>Like</button>
         <span>{likeCount} Likes</span>
         <p>{`Comments: ${post.num_comments} Date Posted: ${formattedDate}`}</p>
+        {/* Render like button and current like count */}
+        <button onClick={handleLike}>Like</button>
       </div>
     </div>
   );
