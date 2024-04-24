@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import { UserFacade, FriendFacade } from './Facades.js';
-import { UserFacade, FriendFacade } from './Facades.js';
 import './Profile.css';
 
 const Profile = () => {
