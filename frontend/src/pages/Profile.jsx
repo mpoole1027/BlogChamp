@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
-import { UserFacade } from './Facades.js';
+import { UserFacade, FriendFacade } from './Facades.js';
 import './Profile.css';
 
 
 const Profile = () => {
-  const [user, setUser] = useState(null)
-  const [error, setError] = useState(null)
+  const [user, setUser] = useState(null);
+  const [friendUsernames, setUsernames] = useState(null);
+  const [error, setError] = useState(null);
+  const [friends, setFriends] = useState(null);
   const [editingBio, setEditingBio] = useState(false)
   const [newBio, setNewBio] = useState('')
   const { username } = useParams(); // Get username from URL parameter
@@ -27,8 +29,40 @@ const Profile = () => {
       }
     };
     fetchUser();
-  }, []);
 
+    const fetchFriends = async () => {
+      try {
+        // Use stored username to fetch user data
+        const friend_response = await FriendFacade.fetchFriendsByUserid(storedUsername);
+        console.log('friend_response: ', friend_response);
+        setFriends(friend_response);
+        // Once friends are fetched, call the function to fetch usernames
+        const usernames = await fetchUsernamesForFriends(friend_response);
+        setUsernames(usernames);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+    
+    const fetchUsernamesForFriends = async (friendList) => {
+      try {
+        const usernames = [];
+        for (const friend of friendList) {
+          // Fetch username for each friend ID
+          const user = await UserFacade.fetchUserByUserid(friend.user_two);
+          usernames.push(user.username);
+        }
+        console.log('Usernames for friends:', usernames);
+        return usernames;
+      } catch (error) {
+        setError(error.message);
+        return []; // Return an empty array in case of error
+      }
+    };
+    
+    fetchFriends(); 
+  }, []);
+ 
   const handleEditBio = () => {
     setEditingBio(!editingBio)
     setNewBio(user.bio)
@@ -75,6 +109,15 @@ const Profile = () => {
       </div>
       <div className="friends-list">
         <h2>Friends List</h2>
+        {friendUsernames && friendUsernames.length > 0 && (
+          <div>
+            {friendUsernames.map((username, index) => (
+              <div key={index}>
+                {username}
+              </div>
+            ))}
+          </div>
+        )}
         {/* Add your Friends list component here */}
       </div>
     </div>
