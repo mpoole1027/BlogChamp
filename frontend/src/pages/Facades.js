@@ -150,7 +150,26 @@ export class FriendFacade {
             const users = await response.json(); // Wait for response data
             return users;
         } catch (error) {
-            throw new Error('An error occurred. Grabbing friends.');
+            throw new Error('An error occurred while fetching friends.');
+        }
+    }
+
+    static async addFriend(user_one, user_two) {
+        try {
+            const response = await fetch('http://localhost:4000/api/friends', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ user_one, user_two }),
+            });
+            if (!response.ok) {
+                throw new Error('Failed to add friend');
+            }
+            return await response.json();
+        } catch (error) {
+            throw new Error('An error occurred while adding friend.');
         }
     }
 }
+

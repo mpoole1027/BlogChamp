@@ -26,7 +26,7 @@ router.post('/', createUser)
 // DELETE a post
 router.delete('/:id', deleteUser)
 
-// UPDATE a post
+// UPDATE a user
 router.patch('/:id', updateUser)
 
 module.exports = router

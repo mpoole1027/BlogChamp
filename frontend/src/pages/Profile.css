@@ -1,64 +1,58 @@
-/* Profile.css */
-
 /* Profile container */
 .profile {
   display: flex;
-  overflow-x: hidden; /* Hide any overflowing content */
-  overflow-y: hidden; /* Hide any overflowing content */
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
 }
 
 /* Main content area */
 .main-content {
-  flex: 0 0 50%; /* Set main content width to 50% */
-  background-color: #002454; /* Set background color */
-  padding: 20px; /* Add padding */
-  overflow: hidden; /* Hide any overflowing content */
+  flex: 1; /* Take remaining space */
+  max-width: 800px; /* Limit width */
 }
 
 /* Profile info */
 .profile-info {
-  color: #FAC01A; /* Set text color to white */
+  background-color: #FAC01A; /* White background color */
+  border-radius: 8px; /* Add border radius */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  padding: 20px; /* Add padding */
+  margin-bottom: 20px; /* Add margin bottom */
 }
 
 /* Bio box */
 .bio-box {
-  background-color: #3366d5d8;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-bottom: 20px;
+  background-color: #f5f5f5; /* Light background color */
+  border-radius: 8px; /* Add border radius */
+  padding: 20px; /* Add padding */
+  margin-bottom: 20px; /* Add margin bottom */
+}
+
+/* Bio box */
+.bio-box p, h3{
+  background-color: #f5f5f5; /* Light background color */
+  border-radius: 8px; /* Add border radius */
+  padding: 20px; /* Add padding */
+  margin-bottom: 20px; /* Add margin bottom */
+  color: black
 }
 
 /* Friends list area */
 .friends-list {
-  flex: 0 0 25%; /* Set friends list width to 25% */
-  background-color: #002454; /* Set background color */
-  padding: 20px; /* Add padding */
-  overflow: hidden; /* Hide any overflowing content */
+  flex: 1; /* Take remaining space */
+  max-width: 300px; /* Limit width */
+  margin-left: 20px; /* Add left margin */
 }
 
 /* Styles for post content */
 .profile-title {
   font-size: 24px; /* Example font size for profile title */
-  margin-bottom: 10px; /* Add margin bottom */
+  margin-bottom: 20px; /* Add margin bottom */
+  color: #FAC01A; /* Set text color to dark gray */
 }
 
 /* Make h2 tag yellow */
-.main-content h2 {
-  color: #FAC01A;
-}
-
-/* Make h2 tag yellow inside .friends-list */
 .friends-list h2 {
-  color: #FAC01A;
-}
-
-/* Adjustments for smaller screens */
-@media (max-width: 768px) {
-  .profile {
-    flex-direction: column; /* Change to column layout for small screens */
-  }
-  .sidebar, .main-content, .friends-list {
-    flex: 0 0 100%; /* Set full width for small screens */
-  }
+  color: #FAC01A; /* Set text color to yellow */
 }
