@@ -43,6 +43,7 @@
   flex: 1; /* Take remaining space */
   max-width: 300px; /* Limit width */
   margin-left: 20px; /* Add left margin */
+  color: #FAC01A; /* Set text color to yellow */
 }
 
 /* Styles for post content */
@@ -54,5 +55,9 @@
 
 /* Make h2 tag yellow */
 .friends-list h2 {
+  color: #FAC01A; /* Set text color to yellow */
+}
+
+.add-friend h2{
   color: #FAC01A; /* Set text color to yellow */
 }
