@@ -69,8 +69,10 @@ const Profile = () => {
       const userTwo = await UserFacade.fetchUserByUsername(newFriendUsername);
       console.log("User one id: ", user._id)
       console.log("User two id: ", userTwo._id)
+      if (user._id != userTwo._id) {
       // Call FriendFacade method to add friend
       await FriendFacade.addFriend(user._id, userTwo._id);
+      }
       // Reset the input field after adding friend
       setNewFriendUsername('');
     } catch (error) {
