@@ -8,6 +8,14 @@ const getFriends = async (req, res) => {
   res.status(200).json(friends)
 }
 
+const getFriendsByUserid = async (req, res) => {
+  const {id} = req.params
+  console.log(req.params)
+  const friends =  await Friend.find({user_one : id})
+
+  res.status(200).json(friends)
+}
+
 
 // get a single friend
 const getFriend = async (req, res) => {
@@ -84,5 +92,6 @@ module.exports = {
   getFriends,
   getFriend,
   deleteFriend,
-  updateFriend
+  updateFriend,
+  getFriendsByUserid
 }

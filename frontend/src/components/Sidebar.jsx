@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
+import '../pages/Facades.js'
+import { PostFacade } from '../pages/Facades.js';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -47,11 +49,24 @@ const Sidebar = () => {
     setPostContent(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle post submission here, e.g., send data to server
-    console.log("Post title:", postTitle);
-    console.log("Post content:", postContent);
+  
+    const postData = {
+      like_count: 0, // Default value for like count
+      num_comments: 0, // Default value for number of comments
+      date_posted: new Date().toISOString(), // Current date and time
+      // Include any other necessary data here, such as user ID or blog ID
+      user_id: storedUsername, // Replace with the actual user ID
+      content: postContent,
+      title: postTitle,
+      blog_id: null, // Replace with the actual blog ID
+    };
+
+    console.log("postData:", postData);
+
+    PostFacade.createPost(postData)
+  
     // After handling submission, close the dialog
     closeDialog();
   };

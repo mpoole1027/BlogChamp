@@ -10,6 +10,7 @@ const Login = () => {
   
   const [newUsername, setNewUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [newEmail, setNewEmail] = useState('');
 
   const navigate = useNavigate();
 
@@ -68,23 +69,25 @@ const Login = () => {
   };
 
   const handleSignUp = async () => {
-    if (newUsername && newPassword) {
+    if (newUsername && newPassword && newEmail) {
       try {
         // Check if the user already exists
-        const checkUserResponse = await UserFacade.getUserByUsername(newUsername);
+        const checkUserResponse = await UserFacade.fetchUserByUsername(newUsername);
+        console.log(checkUserResponse);
         if (checkUserResponse.ok) {
-          const user = await checkUserResponse.json();
-          if (user) {
             setErrorMessage('Username already exists. Please choose a different one.');
             return;
-          }
-        } else {
-          setErrorMessage('Error checking username availability. Please try again later.');
+        }
+
+        const emailRegex = /@nau\.edu$/i;
+        // Check if the email matches the regex
+        if (!emailRegex.test(newEmail)) {
+          setErrorMessage('Please enter a valid NAU email address.');
           return;
         }
   
         // Create a new user if the username is available
-        const newUser = new UserFacade(newUsername, newPassword, "test123@nau.edu", 0, "Enter your bio here!");
+        const newUser = new UserFacade(newUsername, newPassword, newEmail, 0, "Enter your bio here!");
         var response = await UserFacade.createUser(newUser);
         if (response) {
           console.log('User created: ', newUsername);
@@ -138,6 +141,7 @@ const Login = () => {
           <h2>Sign Up</h2>
           <input type="text" placeholder="Username" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
           <input type="password" placeholder="Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+          <input type="text" placeholder="Email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
           <button onClick={handleSignUp}>Sign Up</button>
 
         </div>

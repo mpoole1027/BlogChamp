@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 const Post = () => {
   const [posts, setPosts] = useState(null)
   
+  
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch('http://localhost:4000/api/posts')
@@ -29,7 +30,7 @@ const Post = () => {
         <h1>Posts</h1>
         {/* Check if posts array is not null or empty */}
         {posts && posts.length > 0 && (
-          posts.map((post) => (
+          posts.slice().reverse().map((post) => (
             // Display the post only if blog_id is null
             post.blog_id == null && (
               <PostDetails key={post._id} post={post} />
@@ -37,8 +38,7 @@ const Post = () => {
           ))
         )}
       </div>
-</div>
-
+    </div>
   );
 };
 
