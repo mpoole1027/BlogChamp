@@ -51,6 +51,28 @@ export class UserFacade {
             throw new Error('An error occurred. Please try again later.');
         }
     }
+
+    static async updateUser(user) {
+        console.log(user)
+        try {
+            const response = await fetch(`http://localhost:4000/api/users/${user._id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            });
+  
+            if (response.ok) {
+                const user = await response.json();
+                return user;
+            } else {
+                throw new Error('Error saving user data. Please try again later.');
+            }
+        } catch (error) {
+            throw new Error('An error occurred. Please try again later.');
+        }
+    }
   }
   
 
@@ -146,9 +168,10 @@ export class FriendFacade {
 
     static async fetchFriendsByUserid(user_one){
         try {
-            const response = await fetch(`http://localhost:4000/api/friends/user_id/${user_one}`);
-            const users = await response.json(); // Wait for response data
-            return users;
+            const friends_response = await fetch(`http://localhost:4000/api/friends/user_id/${user_one}`);
+            console.log('Fetch Friends Response: ', friends_response);
+            const friends = await friends_response.json(); // Wait for response data
+            return friends;
         } catch (error) {
             throw new Error('An error occurred while fetching friends.');
         }
