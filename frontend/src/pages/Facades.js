@@ -54,39 +54,58 @@ export class UserFacade {
   }
   
 
-export class PostFacade {
-  constructor(like_count, num_comments, date_created, user_id, content, title, blog_id) {
-      this.like_count = like_count;
-      this.num_comments = num_comments;
-      this.date_created = date_created;
-      this.user_id = user_id;
-      this.content = content;
-      this.title = title;
-      this.blog_id = blog_id;
-  }
-
-  static async createPost(postData) {
-      try {
-          const response = await fetch(`http://localhost:4000/api/posts/`, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(postData)
-          });
-
-          if (response.ok) {
-              const post = await response.json();
-              return post;
-          } else {
-              throw new Error('Error saving post data. Please try again later.');
-          }
-      } catch (error) {
-          throw new Error('An error occurred. Please try again later.');
-      }
-  }
+  export class PostFacade {
+    constructor(like_count, num_comments, date_created, user_id, content, title, blog_id) {
+        this.like_count = like_count;
+        this.num_comments = num_comments;
+        this.date_created = date_created;
+        this.user_id = user_id;
+        this.content = content;
+        this.title = title;
+        this.blog_id = blog_id;
+    }
   
-}
+    static async createPost(postData) {
+        try {
+            const response = await fetch(`http://localhost:4000/api/posts/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(postData)
+            });
+  
+            if (response.ok) {
+                const post = await response.json();
+                return post;
+            } else {
+                throw new Error('Error saving post data. Please try again later.');
+            }
+        } catch (error) {
+            throw new Error('An error occurred. Please try again later.');
+        }
+    }
+  
+    static async updatePostLikeCount(postId, newLikeCount) {
+        try {
+            const response = await fetch(`http://localhost:4000/api/posts/${postId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    like_count: newLikeCount
+                })
+            });
+  
+            if (!response.ok) {
+                throw new Error('Failed to update like count');
+            }
+        } catch (error) {
+            throw new Error('An error occurred while updating like count');
+        }
+    }
+  }
 
 // blogFacade class
 export class BlogFacade {
