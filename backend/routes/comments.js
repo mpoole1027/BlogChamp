@@ -10,14 +10,14 @@ const {
 } = require('../controllers/commentController')
 const router = express.Router()
 
-// GET all comments
-router.get('/', getComments)
+// GET all comments from a post
+router.get('/:post_id', getComments)
 
-// GET a single comment
+// GET a single comment from a post
 router.get('/:id', getComment)
 
 // POST a new comment
-router.post('/', createComment)
+router.post('/:post_id', createComment)
 
 // DELETE a comment
 router.delete('/:id', deleteComment)

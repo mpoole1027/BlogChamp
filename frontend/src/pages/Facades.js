@@ -127,6 +127,28 @@ export class UserFacade {
             throw new Error('An error occurred while updating like count');
         }
     }
+
+    
+
+    static async updatePostCommentCount(postId, newCommentCount) {
+        try {
+            const response = await fetch(`http://localhost:4000/api/comments/${postId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    num_comments: newCommentCount
+                })
+            });
+  
+            if (!response.ok) {
+                throw new Error('Failed to update comment count');
+            }
+        } catch (error) {
+            throw new Error('An error occurred while updating comment count');
+        }
+    }
   }
 
 // blogFacade class
@@ -194,5 +216,45 @@ export class FriendFacade {
             throw new Error('An error occurred while adding friend.');
         }
     }
+}
+
+export class CommentFacade {
+    constructor(date_posted, post_id, content){
+        this.date_posted = date_posted;
+        this.post_id = post_id;
+        this.content = content;
+    }
+
+    static async createComment(post_id, commentData) {
+        try {
+            const response = await fetch(`http://localhost:4000/api/comments/${post_id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(commentData)
+            });
+    
+            if (response.ok) {
+                const comment = await response.json();
+                return comment;
+            } else {
+                throw new Error('Error saving comment data. Please try again later.');
+            }
+        } catch (error) {
+            throw new Error('An error occurred while creating comment');
+        }
+    }
+
+    static async fetchComments(postId) {
+        try {
+          const response = await fetch(`http://localhost:4000/api/comments/${postId}`);
+          const comments = await response.json();
+          return comments;
+        } catch (error) {
+          throw new Error('An error occurred while fetching comments');
+        }
+      }
+    
 }
 
