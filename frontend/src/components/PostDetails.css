@@ -46,7 +46,6 @@
   width: 120px; /* Set width for the like button */
 }
 
-/* Style for the comment button */
 .post-details .comments-button {
   background-color: #007BFF; /* Blue (Bootstrap primary color) */
   border: none;
@@ -61,13 +60,13 @@
   width: 120px; /* Set width for the comment button */
 }
 
-/* Style for the like button on hover */
-.post-details .like-button:hover,
 .post-details .comments-button:hover {
   background-color: #0056b3; /* Darker blue */
 }
 
 
-
-
+/* Style for the like button on hover */
+.post-details .like-button:hover{
+  background-color: #0056b3; /* Darker blue */
+}
   

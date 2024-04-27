@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserFacade } from './Facades.js'; 
+import { UserFacade, BlogFacade } from './Facades.js'; 
 import './Login.css';
 
 const Login = () => {
@@ -54,6 +54,7 @@ const Login = () => {
           if (response.status === 200) {
               console.log(user);
               localStorage.setItem('user_id', user._id);
+              console.log(user._id);
               navigate('/Post');
           }
         } else {
@@ -89,9 +90,17 @@ const Login = () => {
         // Create a new user if the username is available
         const newUser = new UserFacade(newUsername, newPassword, newEmail, 0, "Enter your bio here!");
         var response = await UserFacade.createUser(newUser);
+        const userData = response
         if (response) {
           console.log('User created: ', newUsername);
           console.log('Signup successful!');
+            const blogData = {
+              user: userData._id,
+              title: `${userData.username}'s Blog`,
+              contents: "Write your blog info here.",
+              creation_date: new Date().toISOString(),
+            }
+          response = BlogFacade.createBlog(blogData)
           response = await fetch("http://localhost:4000/login", {
             method: "POST",
             credentials: "include",
@@ -103,7 +112,10 @@ const Login = () => {
               password: newPassword,
             }),
           });
+
           if (response.status === 200) {
+            const userData = await UserFacade.fetchUserByUsername(newUsername);
+            localStorage.setItem('user_id', userData._id);
             navigate('/Post');
           }
         } else {

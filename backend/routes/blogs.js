@@ -3,7 +3,8 @@ const router = express.Router();
 const {
   createBlog,
   getBlogs,
-  getBlog,
+  getBlogById,
+  getBlogByUserId,
   deleteBlog,
   updateBlog,
   getPosts
@@ -12,8 +13,11 @@ const {
 // GET all blogs
 router.get('/', getBlogs);
 
-// GET a single blog
-router.get('/:id', getBlog);
+// GET a single blog by id
+router.get('/id/:id', getBlogById);
+
+// GET a single blog by user id
+router.get('/userid/:id', getBlogByUserId);
 
 // POST a new blog
 router.post('/', createBlog);

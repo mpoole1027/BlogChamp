@@ -67,6 +67,7 @@ const PostDetails = ({ post }) => {
   return (
 <div className="post-details">
   <h4>{post.title}</h4>
+  {user && <p>Author: {user.username}</p>}
   <p className="content">{post.content}</p>
   <div className="metadata">
     <span>{likeCount} Likes</span>

@@ -9,7 +9,7 @@ const getBlogs = async (req, res) => {
 }
 
 // get a single blog
-const getBlog = async (req, res) => {
+const getBlogById = async (req, res) => {
   const {id} = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -25,6 +25,22 @@ const getBlog = async (req, res) => {
   res.status(200).json(workout)
 }
 
+const getBlogByUserId = async (req, res) => {
+  const {id} = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({error: 'No such blog, invalid ID format'})
+  }
+
+  const user =  await Blog.findOne({user : id})
+  console.log(user)
+
+  if (!user) {
+    return res.status(404).json({error: 'No such blog, blog not found'})
+  }
+
+  res.status(200).json(user)
+}
 
 // create a single blog
 const createBlog = async (req, res) => {
@@ -81,7 +97,8 @@ const updateBlog = async (req, res) => {
 module.exports = {
   createBlog,
   getBlogs,
-  getBlog,
+  getBlogById,
+  getBlogByUserId,
   deleteBlog,
   updateBlog
 }

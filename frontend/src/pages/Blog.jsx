@@ -1,6 +1,7 @@
 // BlogsPage.jsx
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
+import { Link, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { UserFacade, FriendFacade, PostFacade } from './Facades.js';
 import './Blog.css';
@@ -88,13 +89,23 @@ const Blogs = () => {
         <h1>Blog</h1>
         <div>
           {/* Render user's username with line separator */}
-          <p>User: {user && user.username}</p>
+          <div>
+            <p>User: {user && user.username}</p>
+            <Link to={`/user/${user && user.username}`}>
+              <button>View Profile</button>
+            </Link>
+          </div>
           <hr /> {/* Add line separator after the user's username */}
           
           {/* Render friend usernames with lines in between */}
           {friendUsernames && friendUsernames.map((friendUsername, index) => (
             <React.Fragment key={index}>
-              <p>Friend: {friendUsername}</p>
+              <div>
+                <p>Friend: {friendUsername}</p>
+                <Link to={`/user/${friendUsername}`}>
+                  <button>View Profile</button>
+                </Link>
+              </div>
               {index !== friendUsernames.length - 1 && <hr />} {/* Add line separator if it's not the last friend */}
             </React.Fragment>
           ))}
