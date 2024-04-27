@@ -54,6 +54,7 @@ const Login = () => {
           if (response.status === 200) {
               console.log(user);
               localStorage.setItem('user_id', user._id);
+              console.log(user._id);
               navigate('/Post');
           }
         } else {
@@ -113,9 +114,10 @@ const Login = () => {
           });
 
           if (response.status === 200) {
-              navigate('/Post');
-            }
-
+            const userData = await UserFacade.fetchUserByUsername(newUsername);
+            localStorage.setItem('user_id', userData._id);
+            navigate('/Post');
+          }
         } else {
           setErrorMessage('Error creating user. Please try again later.');
         }
