@@ -92,7 +92,7 @@ const Blogs = () => {
           <div>
             <p>User: {user && user.username}</p>
             <Link to={`/user/${user && user.username}`}>
-              <button>View Profile</button>
+              <button className='blog-button'>View Profile</button>
             </Link>
           </div>
           <hr /> {/* Add line separator after the user's username */}
@@ -103,7 +103,7 @@ const Blogs = () => {
               <div>
                 <p>Friend: {friendUsername}</p>
                 <Link to={`/user/${friendUsername}`}>
-                  <button>View Profile</button>
+                  <button className='blog-button'>View Profile</button>
                 </Link>
               </div>
               {index !== friendUsernames.length - 1 && <hr />} {/* Add line separator if it's not the last friend */}

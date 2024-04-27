@@ -98,7 +98,7 @@ const Sidebar = () => {
     {/* Create Post Box */}
     {isDialogOpen && (
         <div className="dialog">
-          <div className="sidebar-button">
+          <div>
             <h1>Create Post</h1>
             <form onSubmit={handleSubmit}>
 
@@ -116,19 +116,16 @@ const Sidebar = () => {
                 placeholder="Enter your post content here..."
                 required
               />
-              <input
+              <input className='blog-check'
                 type="checkbox"
                 checked={addToBlog}
                 onChange={handleCheckboxChange}
               />
-              <label>Add to Blog</label>
+              <label >Add to Blog</label>
 
               <div style={{ marginBottom: '10px' }}>
-                <div className='submit-button'>
-                  <button type="submit">Submit</button>
-                </div>
-
-                <button type="button" onClick={closeDialog}>Close</button>
+                <button className="sidebar-button">Submit</button>
+                <button className="sidebar-button" onClick={closeDialog}>Close</button>
               </div>
             </form>
           </div>

@@ -34,7 +34,7 @@
 
 /* Style for the like button */
 .post-details .like-button {
-  background-color: #007BFF; /* Blue (Bootstrap primary color) */
+  background-color: #094a91; /* Blue (Bootstrap primary color) */
   border: none;
   color: white;
   padding: 10px 20px;
@@ -48,7 +48,7 @@
 }
 
 .post-details .comments-button {
-  background-color: #007BFF; /* Blue (Bootstrap primary color) */
+  background-color: #094a91; /* Blue (Bootstrap primary color) */
   border: none;
   color: white;
   padding: 10px 30px; /* Longer padding for the comment button */
@@ -62,12 +62,14 @@
 }
 
 .post-details .comments-button:hover {
-  background-color: #0056b3; /* Darker blue */
+  background-color: #DAA907; /* Darker blue */
+  color: black;
 }
 
 
 /* Style for the like button on hover */
 .post-details .like-button:hover{
-  background-color: #0056b3; /* Darker blue */
+  background-color: #DAA907; /* Darker blue */
+  color: black;
 }
   

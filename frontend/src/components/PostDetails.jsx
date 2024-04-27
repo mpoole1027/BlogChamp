@@ -76,7 +76,9 @@ const PostDetails = ({ post }) => {
   <div className="date-posted">{formattedDate}</div>
   <div className="button-container">
     <button onClick={handleLike} className="like-button">&#128077; Like</button>
-    <Link to={`/comments/${post._id}`} className="comments-button"><button>View Comments</button></Link>
+    <Link to={`/comments/${post._id}`} className="comments-button">
+      View Comments
+    </Link>
   </div>
 </div>
 

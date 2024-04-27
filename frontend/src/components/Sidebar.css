@@ -7,7 +7,7 @@
   left: 0; /* Position sidebar at the left side of the viewport */
   width: 25%; /* Set width of sidebar to 25% */
   height: 100vh; /* Set height of sidebar to full viewport height */
-  background-color: #002454; /* Example background color */
+  background-color: #f5f4f4; /* Example background color */
   justify-content: flex-start;
   align-items: flex-end;
   overflow: hidden; /* Hide any overflowing content */
@@ -18,16 +18,21 @@
   width: 90%; /* Make buttons fill the entire width of the sidebar */
   padding: 20px;
   margin-bottom: 10px;
-  background-color: #FAC01A;
+  background-color: #094a91;
   border: none;
   cursor: pointer;
   text-align: center; /* Center align the text */
   text-decoration: none; /* Remove underline */
-  color: #333; /* Set text color */
+  color: #ffff; /* Set text color */
 }
 
 .sidebar-button:hover {
   background-color: #DAA907;
+  color: black;
+}
+
+.blog-check {
+  margin-bottom: 20px;
 }
 
 .sidebar-button:focus {

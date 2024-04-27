@@ -127,7 +127,7 @@ const Profile = () => {
               <div className="bio-box">
                 <h3>Bio</h3>
                 <p>{user.bio}</p>
-                <button onClick={handleEditBio}>Edit Bio</button>
+                <button className='profile-button'onClick={handleEditBio}>Edit Bio</button>
               </div>
             )}
           </div>
@@ -142,7 +142,7 @@ const Profile = () => {
               value={newFriendUsername}
               onChange={(e) => setNewFriendUsername(e.target.value)}
             />
-            <button type="submit">Add</button>
+            <button className='profile-button' type="submit">Add</button>
           </form>
         </div>
       </div>

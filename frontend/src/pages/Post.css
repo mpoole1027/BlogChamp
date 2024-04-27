@@ -15,7 +15,7 @@
 
 .main-content {
   flex: 2; /* Take up 2/3 of the available space */
-  color: #FAC01A; /* Set text color to yellow */
+  color: #002454; /* Set text color to yellow */
   overflow-y : auto; 
   width: fit-content;
   block-size: fit-content;
@@ -27,8 +27,9 @@ h1 {
 }
 
 .post-details {
-  background-color: #3366d5d8;
+  background-color: #FAF9F6;
   border-radius: 8px;
+  border: 2px solid #002454;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 20px;
@@ -37,11 +38,11 @@ h1 {
 
 .post-details h3 {
   margin-bottom: 10px;
-  color: #FAC01A; /* Set text color to yellow */
+  color: #002454; /* Set text color to yellow */
 }
 
 .post-details p {
-  color: #FAC01A; /* Set text color to yellow */
+  color: #002454; /* Set text color to yellow */
 }
 
 .post-details .author {

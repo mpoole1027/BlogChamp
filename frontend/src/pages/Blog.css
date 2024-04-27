@@ -5,7 +5,7 @@
     margin-left: 25%; /* Set left margin to accommodate the sidebar */
     width: 75%; /* Set width to 75% of the viewport */
     height: 100vh; /* Set height to full viewport height */
-    background-color: #002454; /* Set background color */
+    background-color: #ffff; /* Set background color */
     overflow-y: auto; /* Enable vertical scrolling if content overflows */
   }
   
@@ -13,7 +13,18 @@
   .blog {
     padding: 20px; /* Add padding to the post content */
     overflow: hidden; /* Hide any overflowing content */
-    color: #FAC01A; /* Set text color to yellow */
+    color: #002454; /* Set text color to yellow */
+  }
+
+
+  .blog-button {
+    color: #ffffff;
+    background-color: #094a91;
+  }
+
+  .blog-button:hover {
+    background-color: #DAA907;
+    color: black;
   }
   
   .blog-title {
