@@ -76,7 +76,7 @@ export class UserFacade {
   }
   
 
-  export class PostFacade {
+export class PostFacade {
     constructor(like_count, num_comments, date_created, user_id, content, title, blog_id) {
         this.like_count = like_count;
         this.num_comments = num_comments;
@@ -139,7 +139,16 @@ export class UserFacade {
         }
     }
 
-    
+    static async fetchAllPosts(){
+        try {
+            const response = await fetch('http://localhost:4000/api/posts');
+            const posts = await response.json();
+            return posts;
+        } catch (error) {
+            throw new Error('An Error occured white fetching all post.');
+        }
+    }
+
 
     static async updatePostCommentCount(postId, newCommentCount) {
         try {
