@@ -52,8 +52,9 @@ const PostDetails = ({ post }) => {
         <span>{likeCount} Likes</span>
         <p>{`Comments: ${numComments} Date Posted: ${formattedDate}`}</p>
         {/* Render like button and current like count */}
-        <button onClick={handleLike}>Like</button>
+        <button onClick={handleLike} className="like-button">&#128077; Like</button>
         <Link to={`/comments/${post._id}`} className="comments-button"><button>View Comments</button></Link>
+
       </div>
     </div>
   );

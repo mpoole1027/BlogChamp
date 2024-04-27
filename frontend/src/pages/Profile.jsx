@@ -115,7 +115,11 @@ const Profile = () => {
               // Textbox for editing bio
               <div className="bio-box">
                 <h3>Edit Bio</h3>
-                <textarea value={newBio} onChange={handleChangeBio} />
+                <input 
+                type = "text"
+                placeholder = "Enter new bio"
+                value={newBio} 
+                onChange={handleChangeBio} />
                 <button onClick={handleSaveBio}>Save Bio</button>
               </div>
             ) : (

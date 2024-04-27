@@ -12,4 +12,49 @@
 .content {
   overflow-y : visible; 
 }
+
+/* Assuming you have a CSS file linked to your component */
+
+
+/* Style for the like button */
+.post-details .like-button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom : 100px;
+}
+
+/* Style for the like button on hover */
+.post-details .like-button:hover {
+  background-color: #45a049; /* Darker green */
+}
+
+/* Style for the comments button */
+.post-details button.comments-button {
+  background-color: #008CBA; /* Blue */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Style for the comments button on hover */
+.post-details button.comments-button:hover {
+  background-color: #0077A7; /* Darker blue */
+}
+
   
