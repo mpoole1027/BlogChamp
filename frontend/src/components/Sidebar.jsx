@@ -100,6 +100,12 @@ const Sidebar = () => {
                 placeholder="Enter your post content here..."
                 required
               />
+              <input
+                type="checkbox"
+                checked={addToBlog}
+                onChange={handleCheckboxChange}
+              />
+              <label>Add to Blog</label>
 
               <div style={{ marginBottom: '10px' }}>
                 <div className='submit-button'>
