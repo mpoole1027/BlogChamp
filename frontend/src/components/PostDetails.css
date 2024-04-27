@@ -1,5 +1,6 @@
 /* Style for the post details container */
 .post-details {
+  background-color: #FAF9F6;
   margin: 0 25px; /* Add a 25px margin on both sides of each post */
   padding-bottom: 20px; /* Add padding to the bottom of each post */
   overflow-y: auto;

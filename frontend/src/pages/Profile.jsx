@@ -120,14 +120,14 @@ const Profile = () => {
                 placeholder = "Enter new bio"
                 value={newBio} 
                 onChange={handleChangeBio} />
-                <button onClick={handleSaveBio}>Save Bio</button>
+                <button className='profile-button' onClick={handleSaveBio}>Save Bio</button>
               </div>
             ) : (
               // Display bio as plain text
               <div className="bio-box">
                 <h3>Bio</h3>
                 <p>{user.bio}</p>
-                <button className='profile-button'onClick={handleEditBio}>Edit Bio</button>
+                <button className='profile-button' onClick={handleEditBio}>Edit Bio</button>
               </div>
             )}
           </div>

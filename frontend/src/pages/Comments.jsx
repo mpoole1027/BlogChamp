@@ -92,7 +92,7 @@ const Comments = () => {
       </div>
       <div className="main-content">
         <div className="create-comment">
-          <button className="create-comment-button" onClick={openDialog}>Create Comment</button>
+          <button className="comment-button" onClick={openDialog}>Create Comment</button>
           {isDialogOpen && (
             <div className="dialog">
               <div className="create-comment-form">

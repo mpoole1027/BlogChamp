@@ -24,20 +24,31 @@ h2 {
   margin-bottom: 20px;
 }
 
+.comment-button {
+  color: #ffffff;
+  background-color: #094a91;
+}
+
+.comment-button:hover {
+  background-color: #DAA907;
+  color: black;
+}
 .comment {
-  background-color: #3366d5d8;
+  background-color: #FAF9F6;
+  border: 2px solid #002454;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .comment p {
-  color: #FAC01A; /* Set text color to yellow */
+  color: #002454; /* Set text color to yellow */
 }
 
 .comment-metadata {
   margin-top: 10px;
   font-style: italic;
-  color: #FAC01A; /* Set text color to yellow */
+  color: #002454; /* Set text color to yellow */
 }
