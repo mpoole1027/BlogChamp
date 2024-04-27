@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Comments.css';
 import Sidebar from '../components/Sidebar';
-import { CommentFacade } from '../pages/Facades.js';
+import { CommentFacade, UserFacade } from '../pages/Facades.js';
 import { useParams } from 'react-router-dom';
 
 const Comments = () => {
@@ -9,22 +9,48 @@ const Comments = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [commentContent, setCommentContent] = useState('');
   const [comments, setComments] = useState(null);
+  const [loading, setLoading] = useState(true); // Add loading state
+  const [error, setError] = useState(null);
+
+  const storedUserId = localStorage.getItem('user_id');
 
   const fetchComments = async () => {
     try {
-      // Fetch comments for the specific post ID
       const response = await CommentFacade.fetchComments(post_id);
-      // Sort comments by the newest ones at the top
       const sortedComments = response.sort((a, b) => new Date(b.date_posted) - new Date(a.date_posted));
       setComments(sortedComments);
     } catch (error) {
       console.error('Error fetching comments:', error);
+      setError(error.message);
+    } finally {
+      setLoading(false); // Set loading to false after fetching comments
     }
   };
-
+  
   useEffect(() => {
-    fetchComments(); // Fetch comments when the component mounts
-  }, [post_id]); // Add post_id to the dependency array
+    fetchComments();
+  }, [post_id]);
+  
+  useEffect(() => {
+    const fetchUsersForComments = async () => {
+      try {
+        if (comments) {
+          const updatedComments = await Promise.all(comments.map(async (comment) => {
+            if (!comment.user) {
+              const userData = await UserFacade.fetchUserByUserid(comment.user_id);
+              return { ...comment, user: userData };
+            }
+            return comment;
+          }));
+          setComments(updatedComments);
+        }
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+  
+    fetchUsersForComments();
+  }, [comments]);
 
   const openDialog = () => {
     setIsDialogOpen(true);
@@ -43,18 +69,16 @@ const Comments = () => {
     event.preventDefault();
   
     const commentData = {
-      date_posted: new Date().toISOString(), // Get current date and time
+      date_posted: new Date().toISOString(),
       post_id: post_id,
-      content: commentContent
+      content: commentContent,
+      user_id: storedUserId
     };
   
     try {
-      // Create comment using CommentFacade
       await CommentFacade.createComment(post_id, commentData);
-  
-      // After handling submission, close the dialog and fetch comments again
       closeDialog();
-      fetchComments(); // Update comments after submitting
+      fetchComments();
     } catch (error) {
       console.error('Error creating comment:', error);
     }
@@ -90,13 +114,15 @@ const Comments = () => {
             </div>
           )}
         </div>
-        {/* Display comments */}
         <div className="comments-list">
-          {comments && comments.length > 0 ? (
+          {loading ? (
+            <p>Loading...</p> // Display loading message while comments are being fetched
+          ) : comments && comments.length > 0 ? (
             comments.map((comment, index) => (
               <div key={index} className="comment">
+                {comment.user && <p>Author: {comment.user.username}</p>}
                 <p>{comment.content}</p>
-                <p>Date Posted: {new Date(comment.date_posted).toLocaleString()}</p> {/* Display date posted */}
+                <p>Date Posted: {new Date(comment.date_posted).toLocaleString()}</p>
               </div>
             ))
           ) : (

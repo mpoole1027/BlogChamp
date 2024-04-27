@@ -35,11 +35,11 @@ const getComment = async (req, res) => {
 
 // create a single comment
 const createComment = async (req, res) => {
-  const {date_posted, post_id, content} = req.body
+  const {date_posted, post_id, content, user_id} = req.body
   
   // add post to db
   try {
-    const comment = await Comment.create({date_posted, post_id, content})
+    const comment = await Comment.create({date_posted, post_id, content, user_id})
     res.status(200).json(comment)
   } catch (error) {
     res.status(400).json({error: error.message})
