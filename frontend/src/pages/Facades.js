@@ -130,7 +130,7 @@ export class PostFacade {
 
     static async fetchPostsByUserID(userID) {
         try {
-            const posts_response = await fetch(`http://localhost:4000/api/posts/user_id/${user_one}`);
+            const posts_response = await fetch(`http://localhost:4000/api/posts/user_id/${userID}`);
             console.log('Fetch Friends Response: ', posts_response);
             const posts = await posts_response.json(); // Wait for response data
             return posts;

@@ -5,6 +5,7 @@ import Blog from './pages/Blog';
 import Post from './pages/Post';
 import Profile from './pages/Profile';
 import Comments from './pages/Comments';
+import IndividualBlog from './pages/IndividualBlog';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/profile/:username" element={<Profile />} />
           <Route path="/comments/:post_id" element={<Comments />}/>
+          <Route path="/user/:username" element={<IndividualBlog />}/>
         </Routes>
       </Router>
     </div>
