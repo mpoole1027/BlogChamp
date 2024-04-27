@@ -1,9 +1,19 @@
+/* Style for the post details container */
 .post-details {
-    margin: 0 25px; /* Add a 25px margin on both sides of each post */
-    border-bottom: 1px solid #ccc; /* Add a thin gray border to separate posts */
-    padding-bottom: 20px; /* Add padding to the bottom of each post */
-    overflow-y : auto; 
-  }
+  margin: 0 25px; /* Add a 25px margin on both sides of each post */
+  padding-bottom: 20px; /* Add padding to the bottom of each post */
+  overflow-y: auto;
+  position: relative; /* Ensure relative positioning for absolute positioning of the date */
+}
+
+/* Style for the date posted */
+.post-details .date-posted {
+  position: absolute;
+  bottom: 10px; /* Adjust as needed */
+  left: 50%; /* Position at the center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+}
+
 
 .metadata {
   overflow-y : visible; 
@@ -15,10 +25,16 @@
 
 /* Assuming you have a CSS file linked to your component */
 
+/* Style for the like button and comment button container */
+/* Style for the like button and comment button container */
+.post-details .button-container {
+  display: flex; /* Use flexbox */
+  justify-content: space-between; /* Place buttons at each end of the container */
+}
 
 /* Style for the like button */
 .post-details .like-button {
-  background-color: #4CAF50; /* Green */
+  background-color: #007BFF; /* Blue (Bootstrap primary color) */
   border: none;
   color: white;
   padding: 10px 20px;
@@ -26,35 +42,33 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   cursor: pointer;
   border-radius: 5px;
-  margin-bottom : 100px;
+  width: 120px; /* Set width for the like button */
+}
+
+/* Style for the comment button */
+.post-details .comments-button {
+  background-color: #007BFF; /* Blue (Bootstrap primary color) */
+  border: none;
+  color: white;
+  padding: 10px 30px; /* Longer padding for the comment button */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 120px; /* Set width for the comment button */
 }
 
 /* Style for the like button on hover */
-.post-details .like-button:hover {
-  background-color: #45a049; /* Darker green */
+.post-details .like-button:hover,
+.post-details .comments-button:hover {
+  background-color: #0056b3; /* Darker blue */
 }
 
-/* Style for the comments button */
-.post-details button.comments-button {
-  background-color: #008CBA; /* Blue */
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 5px;
-}
 
-/* Style for the comments button on hover */
-.post-details button.comments-button:hover {
-  background-color: #0077A7; /* Darker blue */
-}
+
 
   
