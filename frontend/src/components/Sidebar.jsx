@@ -8,7 +8,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   // Retrieve username from local storage
-  const storedUsername = localStorage.getItem('username');
+  const storedUserId = localStorage.getItem('user_id');
 
   const signOut = async () => {
     try {
@@ -57,7 +57,7 @@ const Sidebar = () => {
       num_comments: 0, // Default value for number of comments
       date_posted: new Date().toISOString(), // Current date and time
       // Include any other necessary data here, such as user ID or blog ID
-      user_id: storedUsername, // Replace with the actual user ID
+      user_id: storedUserId, // Replace with the actual user ID
       content: postContent,
       title: postTitle,
       blog_id: null, // Replace with the actual blog ID
@@ -76,7 +76,7 @@ const Sidebar = () => {
       <Link to="/post" className="sidebar-button">Posts</Link>
       <Link to="/blog" className="sidebar-button">Blogs</Link>
       {/* Pass the username as a parameter to the profile page */}
-      <Link to={`/profile/${storedUsername}`} className="sidebar-button">Profile</Link>
+      <Link to={`/profile/${storedUserId}`} className="sidebar-button">Profile</Link>
       <Link to="/" onClick={signOut} className="sidebar-button">Logout</Link>
       <Link className="sidebar-button" onClick={openDialog}>Create Post</Link>
     {/* Create Post Box */}
