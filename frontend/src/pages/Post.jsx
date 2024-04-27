@@ -4,22 +4,24 @@ import Sidebar from '../components/Sidebar';
 import PostDetails from '../components/PostDetails';
 import './Post.css'; // Import the CSS file
 import { useEffect, useState } from 'react'
+import { PostFacade } from './Facades';
 
 const Post = () => {
   const [posts, setPosts] = useState(null)
   
-  
   useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch('http://localhost:4000/api/posts')
-      const json = await response.json()
 
-      if (response.ok) {
-        setPosts(json)
+    const fetchPosts = async () => {
+      try {
+        const response = await PostFacade.fetchAllPosts();
+        setPosts(response)
+      } catch (error) {
+        setError(error.message);
       }
     }
     fetchPosts()
-  })
+  });
+  
 
   return (
     <div className="post">
