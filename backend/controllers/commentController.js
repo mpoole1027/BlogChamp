@@ -1,15 +1,21 @@
 const Comment = require('../models/commentModel')
 const mongoose = require('mongoose')
 
-// get all posts
+// get all comments
 const getComments = async (req, res) => {
-  const comments = await Comment.find({}).sort({createdAt: -1})
+  const { post_id } = req.params;
 
-  res.status(200).json(comments)
-}
+  try {
+    // Fetch comments only for the specified post_id
+    const comments = await Comment.find({ post_id });
+    res.json(comments);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching comments', error: error.message });
+  }
+};
 
 
-// get a single post
+// get a single comment
 const getComment = async (req, res) => {
   const {id} = req.params
 
@@ -27,20 +33,20 @@ const getComment = async (req, res) => {
 }
 
 
-// create a single post
+// create a single comment
 const createComment = async (req, res) => {
-  const {num_likes, date_posted, post_id} = req.body
+  const {date_posted, post_id, content} = req.body
   
   // add post to db
   try {
-    const comment = await Comment.create({num_likes, date_posted, post_id})
+    const comment = await Comment.create({date_posted, post_id, content})
     res.status(200).json(comment)
   } catch (error) {
     res.status(400).json({error: error.message})
   }
 }
 
-// delete a post
+// delete a comment
 const deleteComment = async (req, res) => {
   const {id} = req.params
 
@@ -58,7 +64,7 @@ const deleteComment = async (req, res) => {
   res.status(200).json(workout)
 }
 
-// update a post
+// update a comment
 const updateComment = async (req, res) => {
 
   const {id} = req.params
