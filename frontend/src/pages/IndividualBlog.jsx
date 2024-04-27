@@ -48,16 +48,21 @@ const IndividualBlog = () => {
             <Sidebar />
           </div>
           <div className="main-content">
-            <h1>Blog Posts</h1>
+          <h1>Blog Posts</h1>
             {/* Check if posts array is not null or empty */}
-            {posts && posts.length > 0 && (
-            posts.slice().reverse().map((post) => (
-                // Display the post only if blog_id is null
+            {posts && posts.length > 0 ? (
+            // Filter posts to include only those with non-null blog_id
+            posts.filter(post => post.blog_id !== null).length > 0 ? (
+                posts.slice().reverse().map((post) => (
+                // Display the post only if blog_id is not null
                 post.blog_id != null && (
-                <PostDetails key={post._id} post={post} />
+                    <PostDetails key={post._id} post={post} />
                 )
-            ))
-            )}
+                ))
+            ) : (
+                <p>Nothing to see here yet! Come back soon!</p>
+            )
+            ) : null}
           </div>
         </div>
       );
