@@ -250,10 +250,11 @@ export class FriendFacade {
 }
 
 export class CommentFacade {
-    constructor(date_posted, post_id, content){
+    constructor(date_posted, post_id, content, user_id){
         this.date_posted = date_posted;
         this.post_id = post_id;
         this.content = content;
+        this.user_id = user_id;
     }
 
     static async createComment(post_id, commentData) {

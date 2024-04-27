@@ -145,6 +145,7 @@ const Profile = () => {
             <button className='profile-button' type="submit">Add</button>
           </form>
         </div>
+        {error && <p>Error: {error}</p>}
       </div>
       <div className="friends-list">
         <h2>Friends List</h2>
