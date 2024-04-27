@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { PostFacade, CommentFacade } from '../pages/Facades';
+import './PostDetails.css'
 
 const PostDetails = ({ post }) => {
   // Parse the date string into a Date object
@@ -64,19 +65,20 @@ const PostDetails = ({ post }) => {
   }, [post._id]);
 
   return (
-    <div className="post-details">
-      <h4>{post.title}</h4>
-      {/* Render user.username only when user is not null */}
-      {user && <p>{user.username}</p>}
-      <p className="content">{post.content}</p>
-      <div className="metadata">
-        <span>{likeCount} Likes</span>
-        <p>{`Comments: ${numComments} Date Posted: ${formattedDate}`}</p>
-        {/* Render like button and current like count */}
-        <button onClick={handleLike}>Like</button>
-        <Link to={`/comments/${post._id}`} className="comments-button"><button>View Comments</button></Link>
-      </div>
-    </div>
+<div className="post-details">
+  <h4>{post.title}</h4>
+  <p className="content">{post.content}</p>
+  <div className="metadata">
+    <span>{likeCount} Likes</span>
+    <p>{`Comments: ${numComments}`}</p>
+  </div>
+  <div className="date-posted">{formattedDate}</div>
+  <div className="button-container">
+    <button onClick={handleLike} className="like-button">&#128077; Like</button>
+    <Link to={`/comments/${post._id}`} className="comments-button"><button>View Comments</button></Link>
+  </div>
+</div>
+
   );
 };
 

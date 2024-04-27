@@ -16,12 +16,12 @@ const Profile = () => {
 
   useEffect(() => {
     // Retrieve username from local storage
-    const storedUserId = localStorage.getItem('user_id');
+    const storedUsername = localStorage.getItem('username');
     
     const fetchUser = async () => {
       try {
         // Use stored username to fetch user data
-        const response = await UserFacade.fetchUserByUserid(storedUserId);
+        const response = await UserFacade.fetchUserByUserid(storedUsername);
         console.log(response);
         setUser(response);
       } catch (error) {
@@ -33,7 +33,7 @@ const Profile = () => {
     const fetchFriends = async () => {
       try {
         // Use stored username to fetch user data
-        const friend_response = await FriendFacade.fetchFriendsByUserid(storedUserId);
+        const friend_response = await FriendFacade.fetchFriendsByUserid(storedUsername);
         console.log('friend_response: ', friend_response);
         setFriends(friend_response);
         // Once friends are fetched, call the function to fetch usernames
@@ -107,7 +107,7 @@ const Profile = () => {
         <Sidebar />
       </div>
       <div className="main-content">
-        <h1 className="profile-title">Profile</h1>
+      <h1 className="profile-title">{user && `${user.username}'s Profile`}</h1>
          {user && (
           <div className="profile-info">
             <h2>Username: {user.username}</h2>
@@ -115,7 +115,11 @@ const Profile = () => {
               // Textbox for editing bio
               <div className="bio-box">
                 <h3>Edit Bio</h3>
-                <textarea value={newBio} onChange={handleChangeBio} />
+                <input 
+                type = "text"
+                placeholder = "Enter new bio"
+                value={newBio} 
+                onChange={handleChangeBio} />
                 <button onClick={handleSaveBio}>Save Bio</button>
               </div>
             ) : (
