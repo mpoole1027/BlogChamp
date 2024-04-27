@@ -128,6 +128,17 @@ export class UserFacade {
         }
     }
 
+    static async fetchPostsByUserID(userID) {
+        try {
+            const posts_response = await fetch(`http://localhost:4000/api/posts/user_id/${user_one}`);
+            console.log('Fetch Friends Response: ', posts_response);
+            const posts = await posts_response.json(); // Wait for response data
+            return posts;
+        } catch (error) {
+            throw new Error('An error occurred while fetching posts.');
+        }
+    }
+
     
 
     static async updatePostCommentCount(postId, newCommentCount) {
