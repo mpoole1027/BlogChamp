@@ -105,6 +105,8 @@ const Login = () => {
             }),
           });
           if (response.status === 200) {
+            const userData = await UserFacade.fetchUserByUsername(newUsername);
+            localStorage.setItem('user_id', userData._id);
             navigate('/Post');
           }
         } else {
