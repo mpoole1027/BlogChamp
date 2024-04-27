@@ -32,7 +32,7 @@ const getBlogByUserId = async (req, res) => {
     return res.status(404).json({error: 'No such blog, invalid ID format'})
   }
 
-  const user =  await Blog.find({user : id})
+  const user =  await Blog.findOne({user : id})
   console.log(user)
 
   if (!user) {

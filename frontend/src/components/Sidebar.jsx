@@ -59,8 +59,9 @@ const Sidebar = () => {
     let blog_id
 
     if (addToBlog) {
-      const blog = BlogFacade.fetchBlogByUserid(storedUserId)
-      console.log(blog)
+      const blog = await BlogFacade.fetchBlogByUserid(storedUserId)
+      console.log(blog._id)
+      blog_id = blog._id
     }
 
     else {
