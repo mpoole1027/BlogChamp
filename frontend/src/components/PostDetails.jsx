@@ -18,6 +18,25 @@ const PostDetails = ({ post }) => {
   const [likeCount, setLikeCount] = useState(post.like_count);
   const [numComments, setNumComments] = useState(post.num_comments);
 
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {  
+    const fetchUser = async () => {
+      try {
+        // Use stored username to fetch user data
+        const response = await fetch(`http://localhost:4000/api/users/id/${post.user_id}`);
+        const userData = await response.json();
+        setUser(userData);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+    fetchUser();
+  }, []);
+
+  console.log(user);
+
   // Function to handle like button click
   const handleLike = async () => {
     try {
@@ -47,6 +66,8 @@ const PostDetails = ({ post }) => {
   return (
     <div className="post-details">
       <h4>{post.title}</h4>
+      {/* Render user.username only when user is not null */}
+      {user && <p>{user.username}</p>}
       <p className="content">{post.content}</p>
       <div className="metadata">
         <span>{likeCount} Likes</span>
