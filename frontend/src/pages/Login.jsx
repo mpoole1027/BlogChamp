@@ -54,6 +54,7 @@ const Login = () => {
           if (response.status === 200) {
               console.log(user);
               localStorage.setItem('user_id', user._id);
+              console.log(user._id);
               navigate('/Post');
           }
         } else {
