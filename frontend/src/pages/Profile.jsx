@@ -16,12 +16,12 @@ const Profile = () => {
 
   useEffect(() => {
     // Retrieve username from local storage
-    const storedUsername = localStorage.getItem('username');
+    const storedUserId = localStorage.getItem('user_id');
     
     const fetchUser = async () => {
       try {
         // Use stored username to fetch user data
-        const response = await UserFacade.fetchUserByUserid(storedUsername);
+        const response = await UserFacade.fetchUserByUserid(storedUserId);
         console.log(response);
         setUser(response);
       } catch (error) {
@@ -33,7 +33,7 @@ const Profile = () => {
     const fetchFriends = async () => {
       try {
         // Use stored username to fetch user data
-        const friend_response = await FriendFacade.fetchFriendsByUserid(storedUsername);
+        const friend_response = await FriendFacade.fetchFriendsByUserid(storedUserId);
         console.log('friend_response: ', friend_response);
         setFriends(friend_response);
         // Once friends are fetched, call the function to fetch usernames
