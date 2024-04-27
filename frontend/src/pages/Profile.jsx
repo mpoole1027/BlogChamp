@@ -110,7 +110,6 @@ const Profile = () => {
       <h1 className="profile-title">{user && `${user.username}'s Profile`}</h1>
          {user && (
           <div className="profile-info">
-            <h2>Username: {user.username}</h2>
             {editingBio ? (
               // Textbox for editing bio
               <div className="bio-box">
@@ -133,18 +132,19 @@ const Profile = () => {
           </div>
         )}
         {error && <p>Error: {error}</p>}
-        <div className="add-friend">
-          <h2>Add Friend</h2>
-          <form onSubmit={handleAddFriend}>
-            <input
-              type="text"
-              placeholder="Enter username"
-              value={newFriendUsername}
-              onChange={(e) => setNewFriendUsername(e.target.value)}
-            />
-            <button type="submit">Add</button>
-          </form>
-        </div>
+        <div className="add-friend-box">
+  <h3>Add Friend</h3>
+  <form onSubmit={handleAddFriend}>
+    <input
+      type="text"
+      placeholder="Enter username"
+      value={newFriendUsername}
+      onChange={(e) => setNewFriendUsername(e.target.value)}
+    />
+    <button type="submit">Add</button>
+  </form>
+</div>
+
       </div>
       <div className="friends-list">
         <h2>Friends List</h2>
