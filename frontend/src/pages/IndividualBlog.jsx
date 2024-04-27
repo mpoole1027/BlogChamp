@@ -48,7 +48,7 @@ const IndividualBlog = () => {
             <Sidebar />
           </div>
           <div className="main-content">
-          <h1>Blog Posts</h1>
+          <h1>{user && user.username}'s Blog Posts</h1>
             {/* Check if posts array is not null or empty */}
             {posts && posts.length > 0 ? (
             // Filter posts to include only those with non-null blog_id
