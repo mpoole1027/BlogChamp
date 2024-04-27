@@ -161,6 +161,7 @@ export class BlogFacade {
   }
 
   static async createBlog(blogData) {
+      console.log(blogData)
       try {
           const response = await fetch(`http://localhost:4000/api/blogs/`, {
               method: 'POST',
@@ -180,6 +181,16 @@ export class BlogFacade {
           throw new Error('An error occurred. Please try again later.');
       }
   }
+  static async fetchBlogByUserid(user_id){
+      try {
+          const blog_response = await fetch(`http://localhost:4000/api/blogs/userid/${user_id}`);
+          const blog = await blog_response.json(); // Wait for response data
+          console.log(blog)
+          return blog;
+      } catch (error) {
+          throw new Error('An error occurred while fetching blog by user id.');
+      }
+}
 }
 
 export class FriendFacade {

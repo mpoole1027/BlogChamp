@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 import '../pages/Facades.js'
-import { PostFacade } from '../pages/Facades.js';
+import { PostFacade, BlogFacade } from '../pages/Facades.js';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -29,10 +29,15 @@ const Sidebar = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [postTitle, setPostTitle] = useState('');
   const [postContent, setPostContent] = useState('');
+  const [addToBlog, setAddToBlog] = useState(false)
 
   const openDialog = () => {
     setIsDialogOpen(true);
   };
+
+  const handleCheckboxChange = (event) => {
+    setAddToBlog(event.target.checked)
+  }
 
   const closeDialog = () => {
     setIsDialogOpen(false);
@@ -51,7 +56,17 @@ const Sidebar = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+    let blog_id
+
+    if (addToBlog) {
+      const blog = BlogFacade.fetchBlogByUserid(storedUserId)
+      console.log(blog)
+    }
+
+    else {
+      blog_id = null
+    }
+
     const postData = {
       like_count: 0, // Default value for like count
       num_comments: 0, // Default value for number of comments
@@ -60,7 +75,7 @@ const Sidebar = () => {
       user_id: storedUserId, // Replace with the actual user ID
       content: postContent,
       title: postTitle,
-      blog_id: null, // Replace with the actual blog ID
+      blog_id: blog_id, // Replace with the actual blog ID
     };
 
     console.log("postData:", postData);
