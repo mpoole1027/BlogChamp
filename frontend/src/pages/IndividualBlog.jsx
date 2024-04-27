@@ -3,6 +3,7 @@ import Sidebar from '../components/Sidebar';
 import { UserFacade, PostFacade } from '../pages/Facades.js';
 import { useParams } from 'react-router-dom';
 import PostDetails from '../components/PostDetails';
+import './IndividualBlog.css';
 
 const IndividualBlog = () => {
     const { username } = useParams();
