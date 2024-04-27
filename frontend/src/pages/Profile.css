@@ -12,20 +12,21 @@
   max-width: 800px; /* Limit width */
 }
 
-.profile-info,
-.add-friend-box {
-  flex: 1;
-  margin-right: 20px;
+/* Container for bio box and add friend box */
+.bio-and-friend-container {
+  display: flex; /* Use flexbox */
 }
 
+/* Styles for bio box */
 .bio-box {
+  flex: 1; /* Take equal space */
   background-color: #f8f8f8;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 400px;
-  margin-left: 20px; /* Adjusted left margin */
+  margin-right: 20px; /* Add some space between boxes */
 }
 
 .bio-box h3 {
@@ -59,38 +60,15 @@
   outline: none;
 }
 
-/* Friends list area */
-.friends-list {
-  flex: 1; /* Take remaining space */
-  max-width: 300px; /* Limit width */
-  margin-left: 20px; /* Add left margin */
-  color: #FAC01A; /* Set text color to yellow */
-}
-
-/* Styles for post content */
-.profile-title {
-  font-size: 24px; /* Example font size for profile title */
-  margin-bottom: 20px; /* Add margin bottom */
-  color: #FAC01A; /* Set text color to dark gray */
-}
-
-/* Make h2 tag yellow */
-.friends-list h2 {
-  color: #FAC01A; /* Set text color to yellow */
-}
-
-.add-friend h2{
-  color: #FAC01A; /* Set text color to yellow */
-}
-
+/* Styles for add friend box */
 .add-friend-box {
+  flex: 1; /* Take equal space */
   background-color: #f8f8f8;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 400px;
-  margin-left: 20px; /* Adjusted left margin */
 }
 
 .add-friend-box h3 {
@@ -124,7 +102,22 @@
   outline: none;
 }
 
-.profile-content {
-  display: flex;
+/* Friends list area */
+.friends-list {
+  flex: 1; /* Take remaining space */
+  max-width: 300px; /* Limit width */
+  margin-left: 20px; /* Add left margin */
+  color: #FAC01A; /* Set text color to yellow */
 }
 
+/* Styles for profile title */
+.profile-title {
+  font-size: 24px; /* Example font size for profile title */
+  margin-bottom: 20px; /* Add margin bottom */
+  color: #FAC01A; /* Set text color to dark gray */
+}
+
+/* Styles for h2 in friends list */
+.friends-list h2 {
+  color: #FAC01A; /* Set text color to yellow */
+}

@@ -107,44 +107,44 @@ const Profile = () => {
         <Sidebar />
       </div>
       <div className="main-content">
-      <h1 className="profile-title">{user && `${user.username}'s Profile`}</h1>
-         {user && (
-          <div className="profile-info">
-            {editingBio ? (
-              // Textbox for editing bio
-              <div className="bio-box">
-                <h3>Edit Bio</h3>
-                <input 
-                type = "text"
-                placeholder = "Enter new bio"
-                value={newBio} 
-                onChange={handleChangeBio} />
-                <button onClick={handleSaveBio}>Save Bio</button>
-              </div>
-            ) : (
-              // Display bio as plain text
-              <div className="bio-box">
-                <h3>Bio</h3>
-                <p>{user.bio}</p>
-                <button onClick={handleEditBio}>Edit Bio</button>
-              </div>
-            )}
+        <h1 className="profile-title">{user && `${user.username}'s Profile`}</h1>
+        <div className="profile-info">
+          <div className="bio-and-friend-container">
+            <div className="bio-box">
+              {editingBio ? (
+                <>
+                  <h3>Edit Bio</h3>
+                  <input 
+                    type="text"
+                    placeholder="Enter new bio"
+                    value={newBio} 
+                    onChange={handleChangeBio} 
+                  />
+                  <button onClick={handleSaveBio}>Save Bio</button>
+                </>
+              ) : (
+                <>
+                  <h3>Bio</h3>
+                  <p>{user?.bio}</p>
+                  <button onClick={handleEditBio}>Edit Bio</button>
+                </>
+              )}
+            </div>
+            <div className="add-friend-box">
+              <h3>Add Friend</h3>
+              <form onSubmit={handleAddFriend}>
+                <input
+                  type="text"
+                  placeholder="Enter username"
+                  value={newFriendUsername}
+                  onChange={(e) => setNewFriendUsername(e.target.value)}
+                />
+                <button type="submit">Add</button>
+              </form>
+            </div>
           </div>
-        )}
+        </div>
         {error && <p>Error: {error}</p>}
-        <div className="add-friend-box">
-  <h3>Add Friend</h3>
-  <form onSubmit={handleAddFriend}>
-    <input
-      type="text"
-      placeholder="Enter username"
-      value={newFriendUsername}
-      onChange={(e) => setNewFriendUsername(e.target.value)}
-    />
-    <button type="submit">Add</button>
-  </form>
-</div>
-
       </div>
       <div className="friends-list">
         <h2>Friends List</h2>
